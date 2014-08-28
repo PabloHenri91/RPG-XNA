@@ -117,11 +117,6 @@ namespace RPG.src
             Game1.spriteBatch.Draw(texture, new Rectangle(x, y, width, height), null, Color.White, rotation, new Vector2(width / 2f, height / 2f), SpriteEffects.None, 0f);
         }
 
-        public void drawStars(int sourceX, int sourceY)
-        {
-            Game1.spriteBatch.Draw(texture, new Rectangle(Game1.display.displayWidthOver2, Game1.display.displayHeightOver2, Game1.display.displayWidth, Game1.display.displayHeight), new Rectangle(sourceX, sourceY, width, height), Color.White, 0, new Vector2(width / 2f, height / 2f), SpriteEffects.None, 0f);
-        }
-
         public bool intersectsWithMouseClick()
         {
             Rectangle me = new Rectangle((int)position.X, (int)position.Y, width, height);
