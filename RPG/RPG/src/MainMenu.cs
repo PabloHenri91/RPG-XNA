@@ -107,7 +107,7 @@ namespace RPG.src
 
                             if (Game1.input.click0)
                             {
-                                if (textures2D["backButton"].intersectsWithMouseClick())
+                                if (textures2D["buttonBack"].intersectsWithMouseClick())
                                 {
                                     nextState = states.mainMenu;
                                     return;
@@ -238,7 +238,7 @@ namespace RPG.src
                 #region
                 case states.newGame:
                     {
-                        textures2D["newGameBackground"].draw();
+                        textures2D["newGameBackground"].drawOnScreen();
                     }
                     break;
                 #endregion

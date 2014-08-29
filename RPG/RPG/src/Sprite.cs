@@ -8,134 +8,68 @@ using System.Text;
 
 namespace RPG.src
 {
-    class Sprite
+    class Sprite : Entity
     {
-        public int width;
-        public int height;
-        public int biggerSide;
-
-        public Texture2D texture;
-        public Vector2 position;
-        public float rotation = 0;
+        internal Texture2D texture;
+        internal Vector2 origin;
+        internal Rectangle destinationRectangle;
 
         public Sprite(String reference)
+            : base(0, 0, 0, 0)
         {
             texture = Game1.myContentManager.Load<Texture2D>(reference);
             width = texture.Width;
+            rectangle.Width = width;
             height = texture.Height;
+            rectangle.Height = height;
             biggerSide = Math.Max(width, height);
+
+            origin = new Vector2(width / 2f, height / 2f);
+            destinationRectangle = new Rectangle(0, 0, width, height);
         }
 
         public Sprite(String reference, ContentManager contentManager)
+            : base(0, 0, 0, 0)
         {
             texture = contentManager.Load<Texture2D>(reference);
             width = texture.Width;
+            rectangle.Width = width;
             height = texture.Height;
+            rectangle.Height = height;
             biggerSide = Math.Max(width, height);
+
+            origin = new Vector2(width / 2f, height / 2f);
+            destinationRectangle = new Rectangle(0, 0, width, height);
         }
 
         public Sprite(String reference, int width, int height)
+            : base(0, 0, width, height)
         {
             texture = Game1.myContentManager.Load<Texture2D>(reference);
-            this.width = width;
-            this.height = height;
-            biggerSide = Math.Max(width, height);
+
+            origin = new Vector2(width / 2f, height / 2f);
+            destinationRectangle = new Rectangle(0, 0, width, height);
         }
 
-        public void setAngle(float rotation)
+        internal void draw()
         {
-            if (this.rotation == rotation)
-            {
-                return;
-            }
-            Game1.needToDraw = true;
-            this.rotation = rotation;
-        }
-
-        public void setPosition(int x, int y)
-        {
-            if (position.X == x && position.Y == y)
-            {
-                return;
-            }
-            Game1.needToDraw = true;
-            this.position.X = x;
-            this.position.Y = y;
-        }
-
-        public void setPosition(int x, int y, float rotation)
-        {
-            if (this.rotation == rotation)
-            {
-                if (position.X == x && position.Y == y)
-                {
-                    return;
-                }
-            }
-            Game1.needToDraw = true;
-            this.position.X = x;
-            this.position.Y = y;
-            this.rotation = rotation;
-        }
-
-        public void draw()
-        {
-            Game1.spriteBatch.Draw(texture, new Vector2(position.X + Game1.matrix.X - width / 2f, -1f * (position.Y + Game1.matrix.Y + height / 2f)), Color.White);
+            destinationRectangle.X = (int)(position.X + Game1.matrix.X);
+            destinationRectangle.Y = (int)(-position.Y + Game1.matrix.Y);
+            Game1.spriteBatch.Draw(texture, destinationRectangle, null, Color.White, rotation, origin, SpriteEffects.None, 0f);
         }
 
         public void drawOnScreen()
         {
-            Game1.spriteBatch.Draw(texture, position, Color.White);
+            destinationRectangle.X = (int)position.X;
+            destinationRectangle.Y = (int)position.Y;
+            Game1.spriteBatch.Draw(texture, destinationRectangle, null, Color.White, rotation, Vector2.Zero, SpriteEffects.None, 0f);
         }
+
         public void drawOnScreen2()
         {
-            Game1.spriteBatch.Draw(texture, new Rectangle((int)position.X, (int)position.Y, width, height), null, Color.White, rotation, new Vector2(width / 2f, height / 2f), SpriteEffects.None, 0f);
-        }
-
-        public void draw(int x, int y)
-        {
-            Game1.spriteBatch.Draw(texture, new Vector2(x + Game1.matrix.X - width / 2f, -1f * (y + Game1.matrix.Y + height / 2f)), Color.White);
-        }
-
-        public void draw(Vector2 vector2)
-        {
-            Game1.spriteBatch.Draw(texture, new Vector2(vector2.X + Game1.matrix.X - width / 2f, -1f * (vector2.Y + Game1.matrix.Y + height / 2f)), Color.White);
-        }
-
-        public void drawOnScreen(Vector2 vector2)
-        {
-            Game1.spriteBatch.Draw(texture, vector2, Color.White);
-        }
-
-        public void draw(int x, int y, float rotation)
-        {
-            Game1.spriteBatch.Draw(texture, new Rectangle((int)(x + Game1.matrix.X), (int)(y - Game1.matrix.Y), width, height), null, Color.White, rotation, new Vector2(width / 2f, height / 2f), SpriteEffects.None, 0f);
-        }
-
-        public void drawOnScreen(int x, int y, float rotation)
-        {
-            Game1.spriteBatch.Draw(texture, new Rectangle(x, y, width, height), null, Color.White, rotation, new Vector2(width / 2f, height / 2f), SpriteEffects.None, 0f);
-        }
-
-        public bool intersectsWithMouseClick()
-        {
-            Rectangle me = new Rectangle((int)position.X, (int)position.Y, width, height);
-            Rectangle him = new Rectangle(Game1.input.onScreenMouseX, Game1.input.onScreenMouseY, 1, 1);
-            return him.Intersects(me);
-        }
-
-        public bool intersectsWithMouseClick(int x, int y)
-        {
-            Rectangle me = new Rectangle(x, y, width, height);
-            Rectangle him = new Rectangle(Game1.input.onScreenMouseX, Game1.input.onScreenMouseY, 1, 1);
-            return him.Intersects(me);
-        }
-
-        public bool intersectsWithMouseClick(Vector2 vector2)
-        {
-            Rectangle me = new Rectangle((int)vector2.X, (int)vector2.Y, width, height);
-            Rectangle him = new Rectangle(Game1.input.onScreenMouseX, Game1.input.onScreenMouseY, 1, 1);
-            return him.Intersects(me);
+            destinationRectangle.X = (int)position.X;
+            destinationRectangle.Y = (int)position.Y;
+            Game1.spriteBatch.Draw(texture, destinationRectangle, null, Color.White, rotation, origin, SpriteEffects.None, 0f);
         }
     }
 }

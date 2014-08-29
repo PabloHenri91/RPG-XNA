@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework.Input;
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,10 +14,12 @@ namespace RPG.src
         public bool mouse0, click0, backButtonClick;
         private int clickInterval, last0Touch, mouseX, mouseY, lastMouseX, lastMouseY, dx, dy, totalDx, totalDy;
         public int onScreenMouseX, onScreenMouseY;
+        public Rectangle mouseRectangle;
 
         public void setup()
         {
             clickInterval = Game1.config.clickInterval;
+            mouseRectangle = new Rectangle(0, 0, 1, 1);
         }
 
         public void update()
@@ -91,6 +94,9 @@ namespace RPG.src
 
             onScreenMouseX = (int)((mouseState.X / Game1.display.scale) + Game1.display.translateX);
             onScreenMouseY = (int)((mouseState.Y / Game1.display.scale) + Game1.display.translateY);
+
+            mouseRectangle.X = onScreenMouseX;
+            mouseRectangle.Y = onScreenMouseY;
         }
     }
 }

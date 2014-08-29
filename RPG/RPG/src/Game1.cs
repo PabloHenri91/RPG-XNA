@@ -88,8 +88,6 @@ namespace RPG.src
 
             myContentManager = new ContentManager(Services, "Content");
             IsMouseVisible = true;
-
-
         }
 
         protected override void Initialize()
@@ -205,7 +203,7 @@ namespace RPG.src
 #if DEBUG
             countFPSDraw(gameTime);
 #endif
-            GraphicsDevice.Clear(Color.Black);
+            GraphicsDevice.Clear(Color.White);
 
             spriteBatch.Begin(SpriteSortMode.Deferred, null, null, null, display.scissorTestRasterizerState, null, display.camera);
 

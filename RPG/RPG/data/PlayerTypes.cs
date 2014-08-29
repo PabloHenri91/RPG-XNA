@@ -5,7 +5,7 @@ using System.Text;
 
 namespace RPG.data
 {
-    class Monsters
+    class PlayerTypes
     {
     }
 }
