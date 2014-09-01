@@ -20,8 +20,11 @@ namespace RPG.src
         public static ContentManager myContentManager;
         private bool contentIsEmpty;
 
+        //Players
+        internal static Players players;
+
         //FPS
-        private int fps = 60;
+        private int fps = 30;
         public static int frameCount;
 
         //Performance
@@ -33,11 +36,12 @@ namespace RPG.src
         private int elapsed;
 
         //Estados
-        public enum states { game, loading, mainMenu, quit };
+        public enum states { mission, loading, mainMenu, quit };
         public static states state;
         public static states nextState;
-        private LoadScreen loadScreen;
-        private MainMenu mainMenu;
+        internal static LoadScreen loadScreen;
+        internal static MainMenu mainMenu;
+        internal static Mission mission;
 
         //Display
         public static Display display;
@@ -117,6 +121,8 @@ namespace RPG.src
 
             story = new Story();
 
+            players = new Players();
+
             base.Initialize();
         }
 
@@ -148,6 +154,9 @@ namespace RPG.src
                     case states.mainMenu:
                         mainMenu.doLogic();
                         break;
+                    case  states.mission:
+                        mission.doLogic();
+                        break;
                 }
             }
             else if (loadScreenLoaded)
@@ -157,10 +166,20 @@ namespace RPG.src
                 switch (nextState)
                 {
                     case states.mainMenu:
-                        if (mainMenu == null)
-                            mainMenu = new MainMenu();
-                        if (mainMenu.load())
-                            changeState();
+                        {
+                            if (mainMenu == null)
+                                mainMenu = new MainMenu();
+                            if (mainMenu.load())
+                                changeState();
+                        }
+                        break;
+                    case states.mission:
+                        {
+                            if (mission == null)
+                                mission = new Mission();
+                            if (mission.load())
+                                changeState();
+                        }
                         break;
                 }
             }
@@ -203,7 +222,7 @@ namespace RPG.src
 #if DEBUG
             countFPSDraw(gameTime);
 #endif
-            GraphicsDevice.Clear(Color.White);
+            GraphicsDevice.Clear(Color.CornflowerBlue);
 
             spriteBatch.Begin(SpriteSortMode.Deferred, null, null, null, display.scissorTestRasterizerState, null, display.camera);
 
@@ -213,6 +232,9 @@ namespace RPG.src
                 {
                     case states.mainMenu:
                         mainMenu.draw();
+                        break;
+                    case states.mission:
+                        mission.draw();
                         break;
                 }
             }
@@ -252,6 +274,9 @@ namespace RPG.src
                 {
                     case states.mainMenu:
                         mainMenu = null;
+                        break;
+                    case states.mission:
+                        mission = null;
                         break;
                 }
             }

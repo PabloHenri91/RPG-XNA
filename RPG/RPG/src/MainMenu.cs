@@ -10,6 +10,7 @@ namespace RPG.src
         public enum states { mainMenu, loading, newGame, loadGame, credits };
         states state;
         states nextState;
+        private string playerClass;
 
         public MainMenu()
             : base()
@@ -40,11 +41,9 @@ namespace RPG.src
             textures2Dlocations.Add("buttonBackPressed");
             textures2Dlocations.Add("buttonAccept");
             textures2Dlocations.Add("buttonAcceptPressed");
-
-
-
-
-            textures2DlocationsCount = textures2Dlocations.Count;
+            textures2Dlocations.Add("warrior");
+            textures2Dlocations.Add("mage");
+            textures2Dlocations.Add("archer");
         }
 
         public void doLogic()
@@ -78,7 +77,7 @@ namespace RPG.src
                                 {
                                     if (Game1.memoryCard.loadGame())
                                     {
-                                        Game1.nextState = Game1.states.game;
+                                        Game1.nextState = Game1.states.mission;
                                     }
                                     else
                                     {
@@ -112,6 +111,28 @@ namespace RPG.src
                                     nextState = states.mainMenu;
                                     return;
                                 }
+                                if (textures2D["buttonWarrior"].intersectsWithMouseClick())
+                                {
+                                    playerClass = "warrior";
+                                    return;
+                                }
+                                if (textures2D["buttonArcher"].intersectsWithMouseClick())
+                                {
+                                    playerClass = "archer";
+                                    return;
+                                }
+                                if (textures2D["buttonMage"].intersectsWithMouseClick())
+                                {
+                                    playerClass = "mage";
+                                    return;
+                                }
+                                if (textures2D["buttonAccept"].intersectsWithMouseClick())
+                                {
+                                    Game1.memoryCard = new MemoryCard();
+                                    Game1.memoryCard.newGame(playerClass);
+                                    Game1.nextState = Game1.states.mission;
+                                    return;
+                                }
                             }
                         }
                         break;
@@ -122,7 +143,7 @@ namespace RPG.src
                         {
                             if (Game1.memoryCard.loadGame())
                             {
-                                Game1.nextState = Game1.states.game;
+                                Game1.nextState = Game1.states.mission;
                             }
                             else
                             {
@@ -148,6 +169,8 @@ namespace RPG.src
             else
             {
                 //Reload nextState
+                positions.Clear();
+
                 switch (nextState)
                 {
                     //case states.mainMenu:
@@ -169,6 +192,21 @@ namespace RPG.src
                     #region
                     case states.newGame:
                         {
+                            playerClass = "warrior";
+
+                            textures2D["buttonWarrior"].setPosition(430, 120);
+                            textures2D["buttonWarriorPressed"].setPosition(430, 120);
+                            textures2D["buttonArcher"].setPosition(430, 180);
+                            textures2D["buttonArcherPressed"].setPosition(430, 180);
+                            textures2D["buttonMage"].setPosition(430, 240);
+                            textures2D["buttonMagePressed"].setPosition(430, 240);
+                            textures2D["buttonBack"].setPosition(25, 625);
+                            textures2D["buttonBackPressed"].setPosition(25, 625);
+                            textures2D["buttonAccept"].setPosition(675, 530);
+                            textures2D["buttonAcceptPressed"].setPosition(675, 530);
+                            textures2D["warrior"].setPosition(110, 196);
+                            textures2D["archer"].setPosition(110, 196);
+                            textures2D["mage"].setPosition(110, 196);
                         }
                         break;
                     #endregion
@@ -239,6 +277,43 @@ namespace RPG.src
                 case states.newGame:
                     {
                         textures2D["newGameBackground"].drawOnScreen();
+
+                        textures2D["buttonWarrior"].drawOnScreen();
+                        textures2D["buttonArcher"].drawOnScreen();
+                        textures2D["buttonMage"].drawOnScreen();
+                        textures2D["buttonBack"].drawOnScreen();
+                        textures2D["buttonAccept"].drawOnScreen();
+
+                        textures2D[playerClass].drawOnScreen();
+
+                        if (Game1.input.mouse0)
+                        {
+                            if (textures2D["buttonWarrior"].intersectsWithMouseClick())
+                            {
+                                textures2D["buttonWarriorPressed"].drawOnScreen();
+                                return;
+                            }
+                            if (textures2D["buttonArcher"].intersectsWithMouseClick())
+                            {
+                                textures2D["buttonArcherPressed"].drawOnScreen();
+                                return;
+                            }
+                            if (textures2D["buttonMage"].intersectsWithMouseClick())
+                            {
+                                textures2D["buttonMagePressed"].drawOnScreen();
+                                return;
+                            }
+                            if (textures2D["buttonBack"].intersectsWithMouseClick())
+                            {
+                                textures2D["buttonBackPressed"].drawOnScreen();
+                                return;
+                            }
+                            if (textures2D["buttonAccept"].intersectsWithMouseClick())
+                            {
+                                textures2D["buttonAcceptPressed"].drawOnScreen();
+                                return;
+                            }
+                        }
                     }
                     break;
                 #endregion

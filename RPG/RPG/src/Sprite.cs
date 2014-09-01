@@ -18,43 +18,29 @@ namespace RPG.src
             : base(0, 0, 0, 0)
         {
             texture = Game1.myContentManager.Load<Texture2D>(reference);
-            width = texture.Width;
-            rectangle.Width = width;
-            height = texture.Height;
-            rectangle.Height = height;
-            biggerSide = Math.Max(width, height);
-
+            setSize(texture.Width, texture.Height);
             origin = new Vector2(width / 2f, height / 2f);
-            destinationRectangle = new Rectangle(0, 0, width, height);
         }
 
         public Sprite(String reference, ContentManager contentManager)
             : base(0, 0, 0, 0)
         {
             texture = contentManager.Load<Texture2D>(reference);
-            width = texture.Width;
-            rectangle.Width = width;
-            height = texture.Height;
-            rectangle.Height = height;
-            biggerSide = Math.Max(width, height);
-
+            setSize(texture.Width, texture.Height);
             origin = new Vector2(width / 2f, height / 2f);
-            destinationRectangle = new Rectangle(0, 0, width, height);
         }
 
         public Sprite(String reference, int width, int height)
             : base(0, 0, width, height)
         {
             texture = Game1.myContentManager.Load<Texture2D>(reference);
-
             origin = new Vector2(width / 2f, height / 2f);
-            destinationRectangle = new Rectangle(0, 0, width, height);
         }
 
         internal void draw()
         {
             destinationRectangle.X = (int)(position.X + Game1.matrix.X);
-            destinationRectangle.Y = (int)(-position.Y + Game1.matrix.Y);
+            destinationRectangle.Y = -(int)(position.Y + Game1.matrix.Y);
             Game1.spriteBatch.Draw(texture, destinationRectangle, null, Color.White, rotation, origin, SpriteEffects.None, 0f);
         }
 

@@ -73,7 +73,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="data\NPCTypes.cs" />
-    <Compile Include="data\PlayerTypes.cs" />
+    <Compile Include="data\Players.cs" />
+    <Compile Include="src\Chunk.cs" />
+    <Compile Include="src\GameBody.cs" />
+    <Compile Include="src\MapManager.cs" />
+    <Compile Include="src\Mission.cs" />
+    <Compile Include="src\Player.cs" />
+    <Compile Include="src\PlayerType.cs" />
     <Compile Include="data\Story.cs" />
     <Compile Include="data\Talk.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -81,7 +87,6 @@
     <Compile Include="src\Display.cs" />
     <Compile Include="src\Entity.cs" />
     <Compile Include="src\Game1.cs" />
-    <Compile Include="src\GameBody.cs" />
     <Compile Include="src\Input.cs" />
     <Compile Include="src\LoadScreen.cs" />
     <Compile Include="src\MainMenu.cs" />
@@ -89,10 +94,12 @@
     <Compile Include="src\Program.cs" />
     <Compile Include="src\Sprite.cs" />
     <Compile Include="src\State.cs" />
-    <Compile Include="src\Story.cs" />
     <Compile Include="src\Tileset.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Config.ini">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <Content Include="Game.ico" />
     <Content Include="GameThumbnail.png">
       <XnaPlatformSpecific>true</XnaPlatformSpecific>

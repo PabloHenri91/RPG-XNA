@@ -25,6 +25,17 @@ namespace RPG.src
             rectangle = new Rectangle((int)x, (int)y, width, height);
         }
 
+        internal void setSize(int width, int height)
+        {
+            this.width = width;
+            this.height = height;
+
+            biggerSide = Math.Max(width, height);
+
+            rectangle.Width = width;
+            rectangle.Height = height;
+        }
+
         internal void setPosition(float x, float y)
         {
             if (position.X == x && position.Y == y)

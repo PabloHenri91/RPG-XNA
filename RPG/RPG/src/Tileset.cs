@@ -48,7 +48,7 @@ namespace RPG.src
             source.X = texCoordx * tileWidth;
             source.Y = texCoordy * tileHeight;
             destinationRectangle.X = (int)(x + Game1.matrix.X);
-            destinationRectangle.Y = (int)(-y + Game1.matrix.Y);
+            destinationRectangle.Y = -(int)(y + Game1.matrix.Y);
             Game1.spriteBatch.Draw(texture, destinationRectangle, source, Color.White, 0f, origin, SpriteEffects.None, 0f);
         }
     }
