@@ -322,9 +322,9 @@ namespace RPG.src
         {
             //Resumo. Era pra funcionar assim mas precisou de vários ajustes
             //elapsedMilliseconds = Environment.TickCount - lastMilliseconds;
-            //if (elapsedMilliseconds < frameDurationSeconds)
+            //if (elapsedMilliseconds < frameDurationMilliseconds)
             //{
-            //    System.Threading.Thread.Sleep(frameDurationSeconds - elapsedMilliseconds);
+            //    System.Threading.Thread.Sleep(frameDurationMilliseconds - elapsedMilliseconds);
             //}
 
             elapsedMilliseconds = Environment.TickCount - lastMilliseconds;

@@ -30,7 +30,7 @@ namespace RPG.src
             state = states.loading;
             nextState = states.mission;
 
-            world = new World(new Vector2(10f, 0f));
+            world = new World(new Vector2(0f, 0f));
 
             story = new Story();
 

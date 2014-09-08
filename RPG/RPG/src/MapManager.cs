@@ -69,6 +69,9 @@ namespace RPG.src
             Game1.spriteBatch.End();
             Game1.graphicsDeviceManager.GraphicsDevice.SetRenderTarget(null);
 
+            Game1.graphicsDeviceManager.GraphicsDevice.ScissorRectangle =  Game1.display.centerViewport.Bounds;
+            Game1.graphicsDeviceManager.GraphicsDevice.Viewport = Game1.display.centerViewport;
+
             miniMapTexture2d = (Texture2D)miniMapRenderTarget2D;
         }
 

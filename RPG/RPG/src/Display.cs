@@ -26,7 +26,7 @@ namespace RPG.src
         {
             scissorTestRasterizerState = new RasterizerState
             {
-                ScissorTestEnable = false,
+                ScissorTestEnable = true,
                 CullMode = CullMode.None
             };
 
