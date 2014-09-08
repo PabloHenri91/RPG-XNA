@@ -26,17 +26,17 @@ namespace RPG.src
         {
             scissorTestRasterizerState = new RasterizerState
             {
-                ScissorTestEnable = true,
+                ScissorTestEnable = false,
                 CullMode = CullMode.None
             };
 
             //Resolução virtual
-            displayWidth = 1000;
-            displayHeight = 700;
+            displayWidth = Config.displayWidth;;
+            displayHeight = Config.displayHeight;
             displayWidthOver2 = displayWidth / 2;
             displayHeightOver2 = displayHeight / 2;
 
-            graphicsDeviceManager.IsFullScreen = false;
+            graphicsDeviceManager.IsFullScreen = Config.IsFullScreen;
 
             if (graphicsDeviceManager.IsFullScreen)
             {

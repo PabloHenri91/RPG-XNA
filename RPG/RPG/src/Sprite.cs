@@ -19,6 +19,8 @@ namespace RPG.src
         {
             texture = Game1.myContentManager.Load<Texture2D>(reference);
             setSize(texture.Width, texture.Height);
+            destinationRectangle.Width = texture.Width;
+            destinationRectangle.Height = texture.Height;
             origin = new Vector2(width / 2f, height / 2f);
         }
 
@@ -27,6 +29,8 @@ namespace RPG.src
         {
             texture = contentManager.Load<Texture2D>(reference);
             setSize(texture.Width, texture.Height);
+            destinationRectangle.Width = texture.Width;
+            destinationRectangle.Height = texture.Height;
             origin = new Vector2(width / 2f, height / 2f);
         }
 
@@ -34,6 +38,8 @@ namespace RPG.src
             : base(0, 0, width, height)
         {
             texture = Game1.myContentManager.Load<Texture2D>(reference);
+            destinationRectangle.Width = width;
+            destinationRectangle.Height = height;
             origin = new Vector2(width / 2f, height / 2f);
         }
 

@@ -15,7 +15,7 @@ namespace RPG.src
 {
     public class Game1 : Microsoft.Xna.Framework.Game
     {
-        GraphicsDeviceManager graphicsDeviceManager;
+        internal static GraphicsDeviceManager graphicsDeviceManager;
         public static SpriteBatch spriteBatch;
         public static ContentManager myContentManager;
         private bool contentIsEmpty;
@@ -24,7 +24,8 @@ namespace RPG.src
         internal static Players players;
 
         //FPS
-        private int fps = 30;
+        private static int fps = 60;
+        internal static float frameDurationSeconds = 1f / (float)fps;
         public static int frameCount;
 
         //Performance
@@ -56,9 +57,6 @@ namespace RPG.src
         //Fonts
         private SpriteFont verdana20;
         private SpriteFont verdana12;
-
-        //Story
-        private Story story;
 
         //Aux
         private Random random;
@@ -118,8 +116,6 @@ namespace RPG.src
 
             //iniciando matriz
             matrix = new Vector2((float)display.displayWidthOver2, -(float)display.displayHeightOver2);
-
-            story = new Story();
 
             players = new Players();
 
@@ -326,9 +322,9 @@ namespace RPG.src
         {
             //Resumo. Era pra funcionar assim mas precisou de vários ajustes
             //elapsedMilliseconds = Environment.TickCount - lastMilliseconds;
-            //if (elapsedMilliseconds < frameDuration)
+            //if (elapsedMilliseconds < frameDurationSeconds)
             //{
-            //    System.Threading.Thread.Sleep(frameDuration - elapsedMilliseconds);
+            //    System.Threading.Thread.Sleep(frameDurationSeconds - elapsedMilliseconds);
             //}
 
             elapsedMilliseconds = Environment.TickCount - lastMilliseconds;

@@ -1,4 +1,6 @@
-﻿using Microsoft.Xna.Framework;
+﻿using FarseerPhysics.Dynamics;
+using FarseerPhysics.Dynamics.Contacts;
+using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,24 +10,26 @@ namespace RPG.src
 {
     class Player : GameBody
     {
-        internal Point region;
-
-        internal void getRegion()
+        internal Player(int x, int y, int width, int height)
+            : base(x, y, width, height, BodyType.Dynamic)
         {
-            region.X = (int)(position.X / (16f * 64f));
-            region.Y = (int)(position.Y / (16f * 64f));
-            //if (region.X != loadedRegionX && region.Y != loadedRegionY)
-            //{
-            //    mapManager.reLoadMap(world, regionX, regionY, contentManager);
-            //    loadedRegionX = regionX;
-            //    loadedRegionY = regionY;
-            //}
-            //else if (regionX != loadedRegionX || regionY != loadedRegionY)
-            //{
-            //    mapManager.loadMap(world, regionX, regionY, contentManager);
-            //    loadedRegionX = regionX;
-            //    loadedRegionY = regionY;
-            //}
+            body.health = 100;
+
+            body.OnCollision += playerBody_OnCollision;
+        }
+
+        private bool playerBody_OnCollision(Fixture fixtureA, Fixture fixtureB, Contact contact)
+        {
+            return true;
+        }
+
+
+        internal void update()
+        {
+            if (Game1.input.click0)
+            {
+                
+            }
         }
     }
 }

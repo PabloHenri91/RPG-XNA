@@ -51,6 +51,13 @@ namespace RPG.src
             destinationRectangle.Y = -(int)(y + Game1.matrix.Y);
             Game1.spriteBatch.Draw(texture, destinationRectangle, source, Color.White, 0f, origin, SpriteEffects.None, 0f);
         }
+
+        internal void drawTileOnMiniMap(int x, int y, int texCoordx, int texCoordy)
+        {
+            source.X = texCoordx * tileWidth;
+            source.Y = texCoordy * tileHeight;
+            Game1.spriteBatch.Draw(texture, new Rectangle(x, -y, 1, 1), source, Color.White, 0f, Vector2.Zero, SpriteEffects.None, 0f);
+        }
     }
 }
 

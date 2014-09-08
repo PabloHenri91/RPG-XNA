@@ -38,14 +38,19 @@ namespace RPG.src
 
             foreach (string reference in textures2Dlocations)
             {
-                textures2D.Add(reference, new Sprite(reference));
+                if (!textures2D.ContainsKey(reference))
+                {
+                    textures2D.Add(reference, new Sprite(reference));
+                }
             }
 
             foreach (KeyValuePair<string, Vector2> reference in tilesetslocations)
             {
-                tilesets.Add(reference.Key, new Tileset(reference.Key, (int)reference.Value.X, (int)reference.Value.Y));
+                if (!tilesets.ContainsKey(reference.Key))
+                {
+                    tilesets.Add(reference.Key, new Tileset(reference.Key, (int)reference.Value.X, (int)reference.Value.Y));
+                }
             }
-
             return true;
         }
     }

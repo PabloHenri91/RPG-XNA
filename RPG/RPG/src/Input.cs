@@ -18,7 +18,7 @@ namespace RPG.src
 
         public void setup()
         {
-            clickInterval = Game1.config.clickInterval;
+            clickInterval = Config.clickInterval;
             mouseRectangle = new Rectangle(0, 0, 1, 1);
         }
 
@@ -46,7 +46,7 @@ namespace RPG.src
 
                         if (click0)
                         {
-                            click0 = (Game1.frameCount - last0Touch < Game1.config.clickInterval);
+                            click0 = (Game1.frameCount - last0Touch < clickInterval);
                             mouse0 = false;
                             updateMousePosition();
                         }
