@@ -19,10 +19,13 @@ namespace RPG.src
 
         internal Player player;
 
+        //Map
         internal MapManager mapManager;
+        private Vector2 miniMapPosition;
 
         //Phisics
         public World world;
+        
 
         public Mission()
             : base()
@@ -35,6 +38,7 @@ namespace RPG.src
             story = new Story();
 
             mapManager = new MapManager();
+            miniMapPosition = new Vector2(800, 0);
 
             tilesetslocations.Add(Game1.memoryCard.playerClass + "Player", new Vector2(32));
 
@@ -53,7 +57,6 @@ namespace RPG.src
                             player.getPosition();
                             player.update();
                             translateMatrix(player.position.X, player.position.Y);
-                            
                             mapManager.update();
                         }
                         break;
@@ -76,6 +79,8 @@ namespace RPG.src
                             if (player == null)
                             {
                                 player = new Player(0, 0, 32, 32);
+                                player.getPosition();
+                                translateMatrix(player.position.X, player.position.Y);
                                 mapManager.reLoadMap();
                             }
                         }
@@ -104,9 +109,9 @@ namespace RPG.src
                 case states.mission: 
                     {
                         mapManager.drawMapFloor();
-                        tilesets[Game1.memoryCard.playerClass + "Player"].drawTile((int)player.position.X, (int)player.position.Y, 0, 0);
+                        tilesets[Game1.memoryCard.playerClass + "Player"].drawTile((int)player.position.X, (int)player.position.Y, 1, player.texCoord.Y);
                         mapManager.drawMapRoof();
-                        Game1.spriteBatch.Draw(mapManager.miniMapTexture2d, new Vector2(800, 0), Color.White);
+                        Game1.spriteBatch.Draw(mapManager.miniMapTexture2d, miniMapPosition, Color.White);
                         textures2D["missionHUD"].drawOnScreen();
                     }
                     break;

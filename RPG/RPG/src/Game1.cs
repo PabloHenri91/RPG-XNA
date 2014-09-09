@@ -218,7 +218,7 @@ namespace RPG.src
 #if DEBUG
             countFPSDraw(gameTime);
 #endif
-            GraphicsDevice.Clear(Color.CornflowerBlue);
+            GraphicsDevice.Clear(Color.Black);
 
             spriteBatch.Begin(SpriteSortMode.Deferred, null, null, null, display.scissorTestRasterizerState, null, display.camera);
 

@@ -14,8 +14,7 @@ namespace RPG.src
         }
 
         public void draw()
-        {
-            
+        {   
         }
     }
 }

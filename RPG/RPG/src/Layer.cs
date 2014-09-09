@@ -14,7 +14,5 @@ namespace RPG.src
         {
             this.type = type;
         }
-
-        
     }
 }

@@ -56,7 +56,9 @@ namespace RPG.src
         {
             source.X = texCoordx * tileWidth;
             source.Y = texCoordy * tileHeight;
-            Game1.spriteBatch.Draw(texture, new Rectangle(x, -y, 1, 1), source, Color.White, 0f, Vector2.Zero, SpriteEffects.None, 0f);
+            Game1.mission.mapManager.miniMapAuxRetangle.X = x;
+            Game1.mission.mapManager.miniMapAuxRetangle.Y = -y;
+            Game1.spriteBatch.Draw(texture, Game1.mission.mapManager.miniMapAuxRetangle, source, Color.White, 0f, Vector2.Zero, SpriteEffects.None, 0f);
         }
     }
 }

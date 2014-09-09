@@ -10,11 +10,15 @@ namespace RPG.src
     public class Input
     {
         private MouseState mouseState, lastMouseState;
-        private bool backButtonPressed, lastBackButtonPressed, startMooving;
+        private bool backButtonPressed, lastBackButtonPressed, mouseStartMooving;
         public bool mouse0, click0, backButtonClick;
         private int clickInterval, last0Touch, mouseX, mouseY, lastMouseX, lastMouseY, dx, dy, totalDx, totalDy;
         public int onScreenMouseX, onScreenMouseY;
         public Rectangle mouseRectangle;
+        public bool key_left, key_down, key_right, key_up;
+
+        private KeyboardState keyboardState;
+        private KeyboardState lastKeyboardState;
 
         public void setup()
         {
@@ -29,11 +33,23 @@ namespace RPG.src
                 Game1.needToDraw = true;
             }
 
+            lastKeyboardState = keyboardState;
+            keyboardState = Keyboard.GetState();
+
             lastBackButtonPressed = backButtonPressed;
-
-            backButtonPressed = Keyboard.GetState().IsKeyDown(Keys.Escape);
-
+            backButtonPressed = keyboardState.IsKeyDown(Keys.Escape);
             backButtonClick = !backButtonPressed && lastBackButtonPressed;
+
+            key_left = keyboardState.IsKeyDown(Keys.A) || keyboardState.IsKeyDown(Keys.Left);
+            key_down = keyboardState.IsKeyDown(Keys.S) || keyboardState.IsKeyDown(Keys.Down);
+            key_right = keyboardState.IsKeyDown(Keys.D) || keyboardState.IsKeyDown(Keys.Right);
+            key_up = keyboardState.IsKeyDown(Keys.W) || keyboardState.IsKeyDown(Keys.Up);
+
+            if ((keyboardState.IsKeyDown(Keys.LeftAlt) || keyboardState.IsKeyDown(Keys.RightAlt)) && (lastKeyboardState.IsKeyDown(Keys.Enter) && keyboardState.IsKeyUp(Keys.Enter)))
+            {
+                Config.IsFullScreen = !Config.IsFullScreen;
+                Game1.display.setup(Game1.graphicsDeviceManager);
+            }
 
             switch (Game1.state)
             {
@@ -60,9 +76,9 @@ namespace RPG.src
                                 lastMouseY = mouseY;
                                 updateMousePosition();
 
-                                if (startMooving)
+                                if (mouseStartMooving)
                                 {
-                                    startMooving = false;
+                                    mouseStartMooving = false;
                                 }
                                 else
                                 {
@@ -79,7 +95,7 @@ namespace RPG.src
                                 dx = 0;
                                 dy = 0;
                                 last0Touch = Game1.frameCount;
-                                startMooving = true;
+                                mouseStartMooving = true;
                             }
                         }
                     }

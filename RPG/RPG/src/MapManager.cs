@@ -17,10 +17,12 @@ namespace RPG.src
         //Mini Map
         private RenderTarget2D miniMapRenderTarget2D;
         internal Texture2D miniMapTexture2d;
+        internal Rectangle miniMapAuxRetangle;
 
         public MapManager()
         {
             miniMapRenderTarget2D = new RenderTarget2D(Game1.graphicsDeviceManager.GraphicsDevice, 200, 200);
+            miniMapAuxRetangle = new Rectangle(0, 0, 1, 1);
         }
 
         internal void update()
