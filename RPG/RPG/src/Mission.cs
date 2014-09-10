@@ -21,7 +21,6 @@ namespace RPG.src
 
         //Map
         internal MapManager mapManager;
-        private Vector2 miniMapPosition;
 
         //Phisics
         public World world;
@@ -38,11 +37,11 @@ namespace RPG.src
             story = new Story();
 
             mapManager = new MapManager();
-            miniMapPosition = new Vector2(800, 0);
 
             tilesetslocations.Add(Game1.memoryCard.playerClass + "Player", new Vector2(32));
 
             textures2Dlocations.Add("missionHUD");
+            textures2Dlocations.Add("dot");
         }
 
         public void doLogic()
@@ -111,8 +110,10 @@ namespace RPG.src
                         mapManager.drawMapFloor();
                         tilesets[Game1.memoryCard.playerClass + "Player"].drawTile((int)player.position.X, (int)player.position.Y, 1, player.texCoord.Y);
                         mapManager.drawMapRoof();
-                        Game1.spriteBatch.Draw(mapManager.miniMapTexture2d, miniMapPosition, Color.White);
                         textures2D["missionHUD"].drawOnScreen();
+                        Game1.spriteBatch.Draw(mapManager.miniMapTexture2d, new Rectangle(mapManager.miniMapPosition.X, mapManager.miniMapPosition.Y, 192, 192), new Rectangle((int)(player.position.X % Config.chunkSize) / (int)Config.tileSize + (int)Config.tilesPerChunk, (int)(-player.position.Y % Config.chunkSize) / (int)Config.tileSize + (int)Config.tilesPerChunk, 192, 192), Color.White);
+                        textures2D["dot"].setPosition(900 - 4, 100 - 4);
+                        textures2D["dot"].drawOnScreen();
                     }
                     break;
                 case states.pause: 

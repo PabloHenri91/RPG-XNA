@@ -55,8 +55,8 @@ namespace RPG.src
         public static Input input;
 
         //Fonts
-        private SpriteFont verdana20;
-        private SpriteFont verdana12;
+        internal static SpriteFont verdana20;
+        internal static SpriteFont verdana12;
 
         //Aux
         private Random random;

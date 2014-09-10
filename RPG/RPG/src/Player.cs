@@ -33,7 +33,6 @@ namespace RPG.src
             {
                 
             }
-
             move();
         }
 

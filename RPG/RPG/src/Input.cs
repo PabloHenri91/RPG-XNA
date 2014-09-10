@@ -49,6 +49,20 @@ namespace RPG.src
             {
                 Config.IsFullScreen = !Config.IsFullScreen;
                 Game1.display.setup(Game1.graphicsDeviceManager);
+                switch (Game1.state)
+                {
+                    case Game1.states.mission:
+                        Game1.mission.mapManager.reloadMiniMap();
+                        break;
+                    case Game1.states.loading:
+                        break;
+                    case Game1.states.mainMenu:
+                        break;
+                    case Game1.states.quit:
+                        break;
+                    default:
+                        break;
+                }
             }
 
             switch (Game1.state)

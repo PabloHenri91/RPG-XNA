@@ -10,6 +10,7 @@ namespace RPG.src
     class MapManager
     {
         List<Chunk> chunkList = new List<Chunk>();
+        List<Chunk> miniMapChunkList = new List<Chunk>();
 
         internal Point playerRegion;
         internal Point loadedRegion;
@@ -19,10 +20,15 @@ namespace RPG.src
         internal Texture2D miniMapTexture2d;
         internal Rectangle miniMapAuxRetangle;
 
+        //Draw MiniMap
+        internal Point miniMapPosition;
+
         public MapManager()
         {
-            miniMapRenderTarget2D = new RenderTarget2D(Game1.graphicsDeviceManager.GraphicsDevice, 200, 200);
+            miniMapRenderTarget2D = new RenderTarget2D(Game1.graphicsDeviceManager.GraphicsDevice, 320, 320);
             miniMapAuxRetangle = new Rectangle(0, 0, 1, 1);
+
+            miniMapPosition = new Point(804, 4);
         }
 
         internal void update()
@@ -33,6 +39,7 @@ namespace RPG.src
             if (playerRegion != loadedRegion)
             {
                 loadMap();
+                reloadMiniMap();
                 loadedRegion = playerRegion;
             }
         }
@@ -55,18 +62,27 @@ namespace RPG.src
             {
                 loadW();
             }
-            reloadMiniMap();
         }
 
-        private void reloadMiniMap()
+        internal void reloadMiniMap()
         {
+            miniMapChunkList.Clear();
+            for (int y = playerRegion.Y + 2; y >= playerRegion.Y - 2; y--)
+            {
+                for (int x = playerRegion.X - 2; x <= playerRegion.X + 2; x++)
+                {
+                    miniMapChunkList.Add(new Chunk(x, y));
+                }
+            }
+
             Game1.graphicsDeviceManager.GraphicsDevice.SetRenderTarget(miniMapRenderTarget2D);
             Game1.spriteBatch.Begin();
 
-            foreach (var chunk in chunkList)
+            foreach (var chunk in miniMapChunkList)
             {
                 chunk.drawOnMiniMap();
             }
+            miniMapChunkList.Clear();
 
             Game1.spriteBatch.End();
             Game1.graphicsDeviceManager.GraphicsDevice.SetRenderTarget(null);
@@ -152,7 +168,6 @@ namespace RPG.src
             }
 
             reloadMiniMap();
-
             loadedRegion = playerRegion;
         }
 
