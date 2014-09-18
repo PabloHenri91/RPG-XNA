@@ -21,9 +21,11 @@ namespace RPG.src
         private int numX;
         private int numY;
         private string regionString;
+        public bool needToDrawOnMiniMap;
 
         public Chunk(int x, int y)
-        {   
+        {
+            needToDrawOnMiniMap = true;
             chunkTilesets = new List<string>();
             layers = new List<Layer>();
             auxList = new List<int>();

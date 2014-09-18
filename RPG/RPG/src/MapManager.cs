@@ -26,9 +26,21 @@ namespace RPG.src
         //Draw MiniMap
         private Rectangle miniMapDestinationRectangle;
         private Rectangle sourceRectangle;
+        private Vector2 miniMapAuxPosition;
 
         public MapManager()
         {
+            /*
+             * 0    1   2   3   4
+             * 5    6   7   8   9
+             * 10   11  12  13  14
+             * 15   16  17  18  19
+             * 20   21  22  23  24
+             * 
+             * 0    1   2
+             * 3    4   5
+             * 6    7   8
+             */
             miniMapRenderTarget2D = new RenderTarget2D(Game1.graphicsDeviceManager.GraphicsDevice, 320, 320);
             miniMapAuxRetangle = new Rectangle(0, 0, 1, 1);
             miniMapDestinationRectangle = new Rectangle(804, 4, 192, 192);
@@ -108,9 +120,9 @@ namespace RPG.src
                 chunkList[8 - (i * 3)] = chunkList[5 - (i * 3)];
             }
 
-            chunkList[0] = new Chunk(playerRegion.X - 1, playerRegion.Y + 1);
-            chunkList[1] = new Chunk(playerRegion.X + 0, playerRegion.Y + 1);
-            chunkList[2] = new Chunk(playerRegion.X + 1, playerRegion.Y + 1);
+            chunkList[0] = miniMapChunkList[6];
+            chunkList[1] = miniMapChunkList[7];
+            chunkList[2] = miniMapChunkList[8];
         }
 
         private void loadD()
@@ -137,9 +149,9 @@ namespace RPG.src
                 chunkList[6 + i] = chunkList[7 + i];
             }
 
-            chunkList[2] = new Chunk(playerRegion.X + 1, playerRegion.Y + 1);
-            chunkList[5] = new Chunk(playerRegion.X + 1, playerRegion.Y + 0);
-            chunkList[8] = new Chunk(playerRegion.X + 1, playerRegion.Y - 1);
+            chunkList[2] = miniMapChunkList[8];
+            chunkList[5] = miniMapChunkList[13];
+            chunkList[8] = miniMapChunkList[18];
         }
 
         private void loadS()
@@ -166,25 +178,13 @@ namespace RPG.src
                 chunkList[2 + (i * 3)] = chunkList[5 + (i * 3)];
             }
 
-            chunkList[6] = new Chunk(playerRegion.X - 1, playerRegion.Y - 1);
-            chunkList[7] = new Chunk(playerRegion.X + 0, playerRegion.Y - 1);
-            chunkList[8] = new Chunk(playerRegion.X + 1, playerRegion.Y - 1);
+            chunkList[6] = miniMapChunkList[16];
+            chunkList[7] = miniMapChunkList[17];
+            chunkList[8] = miniMapChunkList[18];
         }
 
         private void loadA()
         {
-            /*
-             * 0    1   2   3   4
-             * 5    6   7   8   9
-             * 10   11  12  13  14
-             * 15   16  17  18  19
-             * 20   21  22  23  24
-             * 
-             * 0    1   2
-             * 3    4   5
-             * 6    7   8
-             */
-
             for (i = 0; i < 4; i++)
             {
                 miniMapChunkList[4 - i] = miniMapChunkList[3 - i];
@@ -207,9 +207,9 @@ namespace RPG.src
                 chunkList[8 - i] = chunkList[7 - i];
             }
 
-            chunkList[0] = new Chunk(playerRegion.X - 1, playerRegion.Y + 1);
-            chunkList[3] = new Chunk(playerRegion.X - 1, playerRegion.Y + 0);
-            chunkList[6] = new Chunk(playerRegion.X - 1, playerRegion.Y - 1);
+            chunkList[0] = miniMapChunkList[6];
+            chunkList[3] = miniMapChunkList[11];
+            chunkList[6] = miniMapChunkList[16];
         }
 
         public void reLoadMap()
@@ -262,12 +262,24 @@ namespace RPG.src
 
         private void updateMiniMapTexture2d()
         {
+            miniMapRenderTarget2D = new RenderTarget2D(Game1.graphicsDeviceManager.GraphicsDevice, 320, 320);
             Game1.graphicsDeviceManager.GraphicsDevice.SetRenderTarget(miniMapRenderTarget2D);
             Game1.spriteBatch.Begin();
 
+            if (miniMapTexture2d != null)
+            {
+                miniMapAuxPosition.X = (loadedRegion.X - playerRegion.X) * Config.tilesPerChunk;
+                miniMapAuxPosition.Y = -((loadedRegion.Y - playerRegion.Y) * Config.tilesPerChunk);
+                Game1.spriteBatch.Draw((Texture2D)miniMapTexture2d, miniMapAuxPosition, Color.White);
+            }
+
             foreach (var chunk in miniMapChunkList)
             {
-                chunk.drawOnMiniMap();
+                if (chunk.needToDrawOnMiniMap)
+                {
+                    chunk.drawOnMiniMap();
+                    chunk.needToDrawOnMiniMap = false;
+                }
             }
 
             Game1.spriteBatch.End();
@@ -283,7 +295,7 @@ namespace RPG.src
         {
             sourceRectangle.X = (int)(((Game1.mission.player.position.X - Config.chunkSize * playerRegion.X) / Config.tileSize) + (Config.tilesPerChunk * 0.5f));
             sourceRectangle.Y = (int)((-(Game1.mission.player.position.Y - Config.chunkSize * playerRegion.Y) / Config.tileSize) + (Config.tilesPerChunk * 1.5f));
-            
+
             Game1.spriteBatch.Draw(miniMapTexture2d, miniMapDestinationRectangle, sourceRectangle, Color.White);
         }
     }

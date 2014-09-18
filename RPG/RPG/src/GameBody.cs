@@ -12,6 +12,7 @@ namespace RPG.src
     class GameBody : Entity
     {
         protected Body body;
+        private Vector2 transform;
 
         internal GameBody(float x, float y,int width, int height, BodyType bodyType)
             : base(x, y, width, height)
@@ -36,7 +37,9 @@ namespace RPG.src
         internal new void setPosition(float x, float y)
         {
             base.setPosition(x, y);
-            body.SetTransform(new Vector2(ConvertUnits.ToSimUnits(x), ConvertUnits.ToSimUnits(y)), body.Rotation);
+            transform.X = ConvertUnits.ToSimUnits(x);
+            transform.Y = ConvertUnits.ToSimUnits(y);
+            body.SetTransform(transform, body.Rotation);
         }
 
         internal new void setPosition(Vector2 vector2)
@@ -48,7 +51,9 @@ namespace RPG.src
         internal new void setPosition(float x, float y, float rotation)
         {
             base.setPosition(x, y, rotation);
-            body.SetTransform(new Vector2(ConvertUnits.ToSimUnits(x), ConvertUnits.ToSimUnits(y)), rotation);
+            transform.X = ConvertUnits.ToSimUnits(x);
+            transform.Y = ConvertUnits.ToSimUnits(y);
+            body.SetTransform(transform, rotation);
         }
     }
 }

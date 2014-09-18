@@ -81,6 +81,7 @@ namespace RPG.src
                                 player.getPosition();
                                 translateMatrix(player.position.X, player.position.Y);
                                 mapManager.reLoadMap();
+                                textures2D["dot"].setPosition(900 - 4, 100 - 4);
                             }
                         }
                         break;
@@ -112,11 +113,7 @@ namespace RPG.src
                         mapManager.drawMapRoof();
                         textures2D["missionHUD"].drawOnScreen();
                         mapManager.drawMiniMap();
-                        textures2D["dot"].setPosition(900 - 4, 100 - 4);
                         textures2D["dot"].drawOnScreen();
-
-                        Game1.spriteBatch.DrawString(Game1.verdana12, "" + mapManager.playerRegion, new Vector2(11f, 26f), Color.Black);
-                        Game1.spriteBatch.DrawString(Game1.verdana12, "" + mapManager.playerRegion, new Vector2(10f, 25f), Color.White);
                     }
                     break;
                 case states.pause:
