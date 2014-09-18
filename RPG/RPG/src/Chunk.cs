@@ -34,6 +34,8 @@ namespace RPG.src
             regionString = "" + x + "." + y;
             switch (regionString)
             {
+                case"0.0":
+                    break;
                 default:
                     {
                         chunkTilesets.Add("World_A2");
@@ -66,15 +68,14 @@ namespace RPG.src
             foreach (Layer layer in layers)
             {
                 aux = 0;
-                //if (layer.type != "status" && Convert.ToInt32(layer.type) < 0)
                 for (int y = 0; y < Config.tilesPerChunk; y++)
                 {
                     for (int x = 0; x < Config.tilesPerChunk; x++)
                     {
-                        if ((region.X * Config.chunkSize) - (Config.chunkSize / 2f) + (x * Config.tileSize)  < Game1.mission.player.position.X + Game1.display.displayWidthOver2 - 100 + Config.tileSize &&
-                           ((region.X * Config.chunkSize) - (Config.chunkSize / 2f) + (x * Config.tileSize) > Game1.mission.player.position.X - Game1.display.displayWidthOver2 + 100 - Config.tileSize &&
-                            (region.Y * Config.chunkSize) + (Config.chunkSize / 2f) + (-y * Config.tileSize) < Game1.mission.player.position.Y + Game1.display.displayHeightOver2 - 100 + Config.tileSize &&
-                            (region.Y * Config.chunkSize) + (Config.chunkSize / 2f) + (-y * Config.tileSize) > Game1.mission.player.position.Y - Game1.display.displayHeightOver2 + 100 - Config.tileSize))
+                        if ((region.X * Config.chunkSize) + (x * Config.tileSize) < Game1.mission.player.position.X + Game1.display.displayWidthOver2 - 100 + Config.tileSize &&
+                           ((region.X * Config.chunkSize) + (x * Config.tileSize) > Game1.mission.player.position.X - Game1.display.displayWidthOver2 + 100 - Config.tileSize &&
+                            (region.Y * Config.chunkSize) - (y * Config.tileSize) + Config.chunkSize < Game1.mission.player.position.Y + Game1.display.displayHeightOver2 - 100 + Config.tileSize &&
+                            (region.Y * Config.chunkSize) - (y * Config.tileSize) + Config.chunkSize > Game1.mission.player.position.Y - Game1.display.displayHeightOver2 + 100 - Config.tileSize))
                             for (int a = 1; a < auxList.Count; a++)
                             {
                                 if (layer.data[aux] > auxList[a - 1] && layer.data[aux] <= auxList[a] && auxList[a] > 0)
@@ -93,8 +94,8 @@ namespace RPG.src
                                         numX--;
                                     }
 
-                                    tileset.drawTile((int)((region.X * Config.chunkSize) - (Config.chunkSize / 2f) + (x * Config.tileSize)),
-                                                     (int)((region.Y * Config.chunkSize) + (Config.chunkSize / 2f) + (-y * Config.tileSize)), numX, numY);
+                                    tileset.drawTile((int)((region.X * Config.chunkSize) + (x * Config.tileSize)),
+                                                     (int)((region.Y * Config.chunkSize) - (y * Config.tileSize) + Config.chunkSize), numX, numY);
                                     break;
                                 }
                             }
@@ -135,9 +136,8 @@ namespace RPG.src
                                 {
                                     numX--;
                                 }
-
-                                tileset.drawTileOnMiniMap((int)((region.X - Game1.mission.mapManager.playerRegion.X + 2) * Config.tilesPerChunk) +  x,
-                                                          (int)((region.Y - Game1.mission.mapManager.playerRegion.Y - 2) * Config.tilesPerChunk) + -y, numX, numY);
+                                /*OK*/
+                                tileset.drawTileOnMiniMap((int)((region.X - Game1.mission.mapManager.playerRegion.X + 2) * Config.tilesPerChunk + x), (int)((region.Y - Game1.mission.mapManager.playerRegion.Y - 2) * Config.tilesPerChunk - y), numX, numY);
                                 break;
                             }
                         }

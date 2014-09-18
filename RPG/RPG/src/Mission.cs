@@ -24,7 +24,7 @@ namespace RPG.src
 
         //Phisics
         public World world;
-        
+
 
         public Mission()
             : base()
@@ -50,7 +50,7 @@ namespace RPG.src
             {
                 switch (state)
                 {
-                    case states.mission: 
+                    case states.mission:
                         {
                             world.Step(Game1.frameDurationSeconds);
                             player.getPosition();
@@ -59,7 +59,7 @@ namespace RPG.src
                             mapManager.update();
                         }
                         break;
-                    case states.pause: 
+                    case states.pause:
                         {
 
                         }
@@ -84,7 +84,7 @@ namespace RPG.src
                             }
                         }
                         break;
-                    case states.pause: 
+                    case states.pause:
                         {
 
                         }
@@ -97,26 +97,29 @@ namespace RPG.src
 
         private void translateMatrix(float x, float y)
         {
-            Game1.matrix.X = -x + Game1.display.displayWidthOver2 -100;
-            Game1.matrix.Y = -y + -Game1.display.displayHeightOver2 +100;
+            Game1.matrix.X = -x + Game1.display.displayWidthOver2 - 100;
+            Game1.matrix.Y = -y + -Game1.display.displayHeightOver2 + 100;
         }
 
         public void draw()
         {
             switch (state)
             {
-                case states.mission: 
+                case states.mission:
                     {
                         mapManager.drawMapFloor();
                         tilesets[Game1.memoryCard.playerClass + "Player"].drawTile((int)player.position.X, (int)player.position.Y, 1, player.texCoord.Y);
                         mapManager.drawMapRoof();
                         textures2D["missionHUD"].drawOnScreen();
-                        Game1.spriteBatch.Draw(mapManager.miniMapTexture2d, new Rectangle(mapManager.miniMapPosition.X, mapManager.miniMapPosition.Y, 192, 192), new Rectangle((int)(player.position.X % Config.chunkSize) / (int)Config.tileSize + (int)Config.tilesPerChunk, (int)(-player.position.Y % Config.chunkSize) / (int)Config.tileSize + (int)Config.tilesPerChunk, 192, 192), Color.White);
+                        mapManager.drawMiniMap();
                         textures2D["dot"].setPosition(900 - 4, 100 - 4);
                         textures2D["dot"].drawOnScreen();
+
+                        Game1.spriteBatch.DrawString(Game1.verdana12, "" + mapManager.playerRegion, new Vector2(11f, 26f), Color.Black);
+                        Game1.spriteBatch.DrawString(Game1.verdana12, "" + mapManager.playerRegion, new Vector2(10f, 25f), Color.White);
                     }
                     break;
-                case states.pause: 
+                case states.pause:
                     {
 
                     }
