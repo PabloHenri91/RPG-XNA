@@ -169,7 +169,7 @@ namespace FarseerPhysics.Common.Decomposition
                 }
 
                 // Clip off the ear:
-                // - remove the ear tip from the list
+                // - remove the ear tip from the enemyFoeList
 
                 --vNum;
                 float[] newx = new float[vNum];
@@ -183,7 +183,7 @@ namespace FarseerPhysics.Common.Decomposition
                     ++currDest;
                 }
 
-                // - add the clipped triangle to the triangle list
+                // - add the clipped triangle to the triangle enemyFoeList
                 int under = (earIndex == 0) ? (vNum) : (earIndex - 1);
                 int over = (earIndex == vNum) ? 0 : (earIndex + 1);
                 Triangle toAdd = new Triangle(xrem[earIndex], yrem[earIndex], xrem[over], yrem[over], xrem[under],
@@ -191,7 +191,7 @@ namespace FarseerPhysics.Common.Decomposition
                 buffer[bufferSize] = toAdd;
                 ++bufferSize;
 
-                // - replace the old list with the new one
+                // - replace the old enemyFoeList with the new one
                 xrem = newx;
                 yrem = newy;
             }

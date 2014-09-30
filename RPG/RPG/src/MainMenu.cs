@@ -156,7 +156,6 @@ namespace RPG.src
                     #region
                     case states.credits:
                         {
-                            //TODO Não Implementado
                             if (Game1.input.click0 || Game1.input.backButtonClick)
                             {
                                 nextState = states.mainMenu;

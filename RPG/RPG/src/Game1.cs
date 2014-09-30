@@ -1,15 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
-using System.Threading;
 using RPG.data;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Threading;
 
 namespace RPG.src
 {
@@ -59,7 +60,7 @@ namespace RPG.src
         internal static SpriteFont verdana12;
 
         //Aux
-        private Random random;
+        internal static Random random;
         public static Config config;
         private Texture2D voidTexture;
         private bool loadScreenLoaded;

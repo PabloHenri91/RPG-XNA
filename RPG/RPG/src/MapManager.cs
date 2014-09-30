@@ -295,8 +295,14 @@ namespace RPG.src
         {
             sourceRectangle.X = (int)(((Game1.mission.player.position.X - Config.chunkSize * playerRegion.X) / Config.tileSize) + (Config.tilesPerChunk * 0.5f));
             sourceRectangle.Y = (int)((-(Game1.mission.player.position.Y - Config.chunkSize * playerRegion.Y) / Config.tileSize) + (Config.tilesPerChunk * 1.5f));
-
             Game1.spriteBatch.Draw(miniMapTexture2d, miniMapDestinationRectangle, sourceRectangle, Color.White);
+
+            //sourceRectangle.X = (int)((Game1.mission.player.position.X - Config.chunkSize) / Config.tileSize);
+            //sourceRectangle.Y = (int)(Game1.mission.textures2D["miniMapPablo.fw"].texture.Height - ((Game1.mission.player.position.Y - Config.chunkSize) / Config.tileSize));
+            //Game1.spriteBatch.Draw( Game1.mission.textures2D["miniMapPablo.fw"].texture, miniMapDestinationRectangle, sourceRectangle, Color.White);
+
+            Game1.spriteBatch.DrawString(Game1.verdana12, "" + playerRegion, new Vector2(miniMapDestinationRectangle.X + 10, miniMapDestinationRectangle.Y + 10), Color.White);
+            
         }
     }
 }

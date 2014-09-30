@@ -33,7 +33,7 @@ namespace FarseerPhysics.Common.Decomposition.Seidel
             Triangles = new List<List<Point>>();
         }
 
-        // Append a point to the list
+        // Append a point to the enemyFoeList
         public void Add(Point point)
         {
             if (_size == 0)
@@ -43,7 +43,7 @@ namespace FarseerPhysics.Common.Decomposition.Seidel
             }
             else if (_size == 1)
             {
-                // Keep repeat points out of the list
+                // Keep repeat points out of the enemyFoeList
                 _tail = point;
                 _tail.Prev = _head;
                 _head.Next = _tail;
@@ -51,7 +51,7 @@ namespace FarseerPhysics.Common.Decomposition.Seidel
             }
             else
             {
-                // Keep repeat points out of the list
+                // Keep repeat points out of the enemyFoeList
                 _tail.Next = point;
                 point.Prev = _tail;
                 _tail = point;
@@ -59,7 +59,7 @@ namespace FarseerPhysics.Common.Decomposition.Seidel
             }
         }
 
-        // Remove a point from the list
+        // Remove a point from the enemyFoeList
         public void Remove(Point point)
         {
             Point next = point.Next;
@@ -79,7 +79,7 @@ namespace FarseerPhysics.Common.Decomposition.Seidel
             GenMonoPoly();
 
             // Initialize internal angles at each nonbase vertex
-            // Link strictly convex vertices into a list, ignore reflex vertices
+            // Link strictly convex vertices into a enemyFoeList, ignore reflex vertices
             Point p = _head.Next;
             while (p.Neq(_tail))
             {
@@ -114,7 +114,7 @@ namespace FarseerPhysics.Common.Decomposition.Seidel
 
                 Triangles.Add(triangle);
 
-                // Remove ear, update angles and convex list
+                // Remove ear, update angles and convex enemyFoeList
                 Remove(ear);
                 if (Valid(a))
                     _convexPoints.Add(a);

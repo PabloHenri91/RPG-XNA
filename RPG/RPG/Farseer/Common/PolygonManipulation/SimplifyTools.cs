@@ -107,7 +107,7 @@ namespace FarseerPhysics.Common.PolygonManipulation
         }
 
         /// <summary>
-        /// Merges all parallel edges in the list of vertices
+        /// Merges all parallel edges in the enemyFoeList of vertices
         /// </summary>
         /// <param name="vertices">The vertices.</param>
         /// <param name="tolerance">The tolerance.</param>
@@ -163,7 +163,7 @@ namespace FarseerPhysics.Common.PolygonManipulation
 
             int currIndex = 0;
 
-            //Copy the vertices to a new list and clear the old
+            //Copy the vertices to a new enemyFoeList and clear the old
             Vertices newVertices = new Vertices(newNVertices);
 
             for (int i = 0; i < vertices.Count; ++i)
@@ -226,7 +226,7 @@ namespace FarseerPhysics.Common.PolygonManipulation
         }
 
         /// <summary>
-        /// Reduces the polygon by removing the Nth vertex in the vertices list.
+        /// Reduces the polygon by removing the Nth vertex in the vertices enemyFoeList.
         /// </summary>
         /// <param name="vertices">The vertices.</param>
         /// <param name="nth">The Nth point to remove. Example: 5.</param>

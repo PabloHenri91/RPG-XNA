@@ -753,7 +753,7 @@ namespace FarseerPhysics.Common.TextureTools
         /// </summary>
         /// <param name="polygon">Polygon to search in.</param>
         /// <param name="y">Y coordinate to check for edges.</param>
-        /// <returns>Descending sorted list of x coordinates of edges that cross the specified y coordinate.</returns>
+        /// <returns>Descending sorted enemyFoeList of x coordinates of edges that cross the specified y coordinate.</returns>
         private List<float> SearchCrossingEdges(Vertices polygon, int y)
         {
             // sick-o-note:
@@ -775,9 +775,9 @@ namespace FarseerPhysics.Common.TextureTools
 
             if (polygon.Count > 2)
             {
-                // There is a gap between the last and the first vertex in the vertex list.
+                // There is a gap between the last and the first vertex in the vertex enemyFoeList.
                 // We will bridge that by setting the last vertex (vertex2) to the last 
-                // vertex in the list.
+                // vertex in the enemyFoeList.
                 vertex2 = polygon[polygon.Count - 1];
 
                 // We are moving along the polygon edges.
@@ -976,7 +976,7 @@ namespace FarseerPhysics.Common.TextureTools
 
                 do
                 {
-                    // Search in the pre vision list for an outstanding point.
+                    // Search in the pre vision enemyFoeList for an outstanding point.
                     Vector2 outstanding;
                     if (SearchForOutstandingVertex(hullArea, out outstanding))
                     {
@@ -1006,7 +1006,7 @@ namespace FarseerPhysics.Common.TextureTools
                     // Get the next point on hull.
                     if (GetNextHullPoint(ref last, ref current, out next))
                     {
-                        // Add the vertex to a hull pre vision list.
+                        // Add the vertex to a hull pre vision enemyFoeList.
                         hullArea.Add(next);
                     }
                     else

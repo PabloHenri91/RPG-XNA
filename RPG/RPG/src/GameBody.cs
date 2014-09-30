@@ -11,7 +11,7 @@ namespace RPG.src
 {
     class GameBody : Entity
     {
-        protected Body body;
+        internal Body body;
         private Vector2 transform;
 
         internal GameBody(float x, float y,int width, int height, BodyType bodyType)

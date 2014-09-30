@@ -8,9 +8,9 @@
  * are permitted provided that the following conditions are met:
  *
  * * Redistributions of source code must retain the above copyright notice,
- *   this list of conditions and the following disclaimer.
+ *   this enemyFoeList of conditions and the following disclaimer.
  * * Redistributions in binary form must reproduce the above copyright notice,
- *   this list of conditions and the following disclaimer in the documentation
+ *   this enemyFoeList of conditions and the following disclaimer in the documentation
  *   and/or other materials provided with the distribution.
  * * Neither the name of Poly2Tri nor the names of its contributors may be
  *   used to endorse or promote products derived from this software without specific
@@ -55,7 +55,7 @@ namespace FarseerPhysics.Common.Decomposition.CDT.Sets
 
         /**
          * 
-         * @param points - A list of all points in PointSet
+         * @param points - A enemyFoeList of all points in PointSet
          * @param constraints - Pairs of two points defining a constraint, all points <b>must</b> be part of given PointSet!
          */
 
@@ -97,14 +97,6 @@ namespace FarseerPhysics.Common.Decomposition.CDT.Sets
                 }
             }
         }
-
-        /**
-         * TODO: TO BE IMPLEMENTED!
-         * Peforms a validation on given input<br>
-         * 1. Check's if there any constraint edges are crossing or collinear<br>
-         * 2. 
-         * @return
-         */
 
         public bool isValid()
         {

@@ -13,9 +13,9 @@ namespace FarseerPhysics.Common.TextureTools
     Redistribution and use in source and binary forms, with or without modification, are permitted
     provided that the following conditions are met:
 
-        * Redistributions of source code must retain the above copyright notice, this list of conditions
+        * Redistributions of source code must retain the above copyright notice, this enemyFoeList of conditions
 	      and the following disclaimer.
-        * Redistributions in binary form must reproduce the above copyright notice, this list of
+        * Redistributions in binary form must reproduce the above copyright notice, this enemyFoeList of
 	      conditions and the following disclaimer in the documentation and/or other materials provided
 	      with the distribution.
         * Neither the name of the nape project nor the names of its contributors may be used to endorse
@@ -485,12 +485,12 @@ namespace FarseerPhysics.Common.TextureTools
         /// </summary>
         internal class CxFastList<T>
         {
-            // first node in the list
+            // first node in the enemyFoeList
             private CxFastListNode<T> _head;
             private int _count;
 
             /// <summary>
-            /// Iterator to start of list (O(1))
+            /// Iterator to start of enemyFoeList (O(1))
             /// </summary>
             public CxFastListNode<T> Begin()
             {
@@ -498,7 +498,7 @@ namespace FarseerPhysics.Common.TextureTools
             }
 
             /// <summary>
-            /// Iterator to end of list (O(1))
+            /// Iterator to end of enemyFoeList (O(1))
             /// </summary>
             public CxFastListNode<T> End()
             {
@@ -506,7 +506,7 @@ namespace FarseerPhysics.Common.TextureTools
             }
 
             /// <summary>
-            /// Returns first element of list (O(1))
+            /// Returns first element of enemyFoeList (O(1))
             /// </summary>
             public T Front()
             {
@@ -514,7 +514,7 @@ namespace FarseerPhysics.Common.TextureTools
             }
 
             /// <summary>
-            /// add object to list (O(1))
+            /// add object to enemyFoeList (O(1))
             /// </summary>
             public CxFastListNode<T> Add(T value)
             {
@@ -535,7 +535,7 @@ namespace FarseerPhysics.Common.TextureTools
             }
 
             /// <summary>
-            /// remove object from list, returns true if an element was removed (O(n))
+            /// remove object from enemyFoeList, returns true if an element was removed (O(n))
             /// </summary>
             public bool Remove(T value)
             {
@@ -553,7 +553,7 @@ namespace FarseerPhysics.Common.TextureTools
                             // if we are on the value to be removed
                             if (comparer.Equals(head._elt, value))
                             {
-                                // then we need to patch the list
+                                // then we need to patch the enemyFoeList
                                 // check to see if we are removing the _head
                                 if (head == _head)
                                 {
@@ -579,8 +579,8 @@ namespace FarseerPhysics.Common.TextureTools
             }
 
             /// <summary>
-            /// pop element from head of list (O(1)) Note: this does not return the object popped! 
-            /// There is good reason to this, and it regards the Alloc list variants which guarantee 
+            /// pop element from head of enemyFoeList (O(1)) Note: this does not return the object popped! 
+            /// There is good reason to this, and it regards the Alloc enemyFoeList variants which guarantee 
             /// objects are released to the object pool. You do not want to retrieve an element 
             /// through pop or else that object may suddenly be used by another piece of code which 
             /// retrieves it from the object pool.
@@ -629,7 +629,7 @@ namespace FarseerPhysics.Common.TextureTools
             }
 
             /// <summary>
-            /// whether the list is empty (O(1))
+            /// whether the enemyFoeList is empty (O(1))
             /// </summary>
             public bool Empty()
             {
@@ -639,7 +639,7 @@ namespace FarseerPhysics.Common.TextureTools
             }
 
             /// <summary>
-            /// computes size of list (O(n))
+            /// computes size of enemyFoeList (O(n))
             /// </summary>
             public int Size()
             {
@@ -655,7 +655,7 @@ namespace FarseerPhysics.Common.TextureTools
             }
 
             /// <summary>
-            /// empty the list (O(1) if CxMixList, O(n) otherwise)
+            /// empty the enemyFoeList (O(1) if CxMixList, O(n) otherwise)
             /// </summary>
             public void Clear()
             {
@@ -671,7 +671,7 @@ namespace FarseerPhysics.Common.TextureTools
             }
 
             /// <summary>
-            /// returns true if 'value' is an element of the list (O(n))
+            /// returns true if 'value' is an element of the enemyFoeList (O(n))
             /// </summary>
             public bool Has(T value)
             {

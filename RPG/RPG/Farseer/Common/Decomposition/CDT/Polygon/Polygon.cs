@@ -8,9 +8,9 @@
  * are permitted provided that the following conditions are met:
  *
  * * Redistributions of source code must retain the above copyright notice,
- *   this list of conditions and the following disclaimer.
+ *   this enemyFoeList of conditions and the following disclaimer.
  * * Redistributions in binary form must reproduce the above copyright notice,
- *   this list of conditions and the following disclaimer in the documentation
+ *   this enemyFoeList of conditions and the following disclaimer in the documentation
  *   and/or other materials provided with the distribution.
  * * Neither the name of Poly2Tri nor the names of its contributors may be
  *   used to endorse or promote products derived from this software without specific
@@ -54,9 +54,9 @@ namespace FarseerPhysics.Common.Decomposition.CDT.Polygon
         protected List<DelaunayTriangle> _triangles;
 
         /// <summary>
-        /// Create a polygon from a list of at least 3 points with no duplicates.
+        /// Create a polygon from a enemyFoeList of at least 3 points with no duplicates.
         /// </summary>
-        /// <param name="points">A list of unique points</param>
+        /// <param name="points">A enemyFoeList of unique points</param>
         public Polygon(IList<PolygonPoint> points)
         {
             if (points.Count < 3) throw new ArgumentException("List has fewer than 3 points", "points");
@@ -69,9 +69,9 @@ namespace FarseerPhysics.Common.Decomposition.CDT.Polygon
         }
 
         /// <summary>
-        /// Create a polygon from a list of at least 3 points with no duplicates.
+        /// Create a polygon from a enemyFoeList of at least 3 points with no duplicates.
         /// </summary>
-        /// <param name="points">A list of unique points.</param>
+        /// <param name="points">A enemyFoeList of unique points.</param>
         public Polygon(IEnumerable<PolygonPoint> points) : this((points as IList<PolygonPoint>) ?? points.ToArray())
         {
         }
@@ -220,9 +220,9 @@ namespace FarseerPhysics.Common.Decomposition.CDT.Polygon
         }
 
         /// <summary>
-        /// Inserts list (after last point in polygon?)
+        /// Inserts enemyFoeList (after last point in polygon?)
         /// </summary>
-        /// <param name="list"></param>
+        /// <param name="enemyFoeList"></param>
         public void AddPoints(IEnumerable<PolygonPoint> list)
         {
             PolygonPoint first;

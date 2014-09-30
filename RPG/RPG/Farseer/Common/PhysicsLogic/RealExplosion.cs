@@ -111,7 +111,7 @@ namespace FarseerPhysics.Common.PhysicsLogic
         /// <param name="pos">The position where the explosion happens </param>
         /// <param name="radius">The explosion radius </param>
         /// <param name="maxForce">The explosion force at the explosion point (then is inversely proportional to the square of the distance)</param>
-        /// <returns>A list of bodies and the amount of force that was applied to them.</returns>
+        /// <returns>A enemyFoeList of bodies and the amount of force that was applied to them.</returns>
         public Dictionary<Fixture, Vector2> Activate(Vector2 pos, float radius, float maxForce)
         {
             AABB aabb;

@@ -55,7 +55,7 @@ namespace FarseerPhysics.Common.PolygonManipulation
     /// <param name="clipType">The operation to be performed. Either
     /// Union, Difference or Intersection.</param>
     /// <param name="error">The error generated (if any)</param>
-    /// <returns>A list of closed polygons, which make up the result of the clipping operation.
+    /// <returns>A enemyFoeList of closed polygons, which make up the result of the clipping operation.
     /// Outer contours are ordered counter clockwise, holes are ordered clockwise.</returns>
     private static List<Vertices> Execute(Vertices subject, Vertices clip, PolyClipType clipType, out PolyClipError error)
     {

@@ -82,7 +82,7 @@ namespace FarseerPhysics.Collision
             _nodeCount = 0;
             _nodes = new TreeNode<T>[_nodeCapacity];
 
-            // Build a linked list for the free list.
+            // Build a linked enemyFoeList for the free enemyFoeList.
             for (int i = 0; i < _nodeCapacity - 1; ++i)
             {
                 _nodes[i] = new TreeNode<T>();
@@ -427,13 +427,13 @@ namespace FarseerPhysics.Collision
             {
                 Debug.Assert(_nodeCount == _nodeCapacity);
 
-                // The free list is empty. Rebuild a bigger pool.
+                // The free enemyFoeList is empty. Rebuild a bigger pool.
                 TreeNode<T>[] oldNodes = _nodes;
                 _nodeCapacity *= 2;
                 _nodes = new TreeNode<T>[_nodeCapacity];
                 Array.Copy(oldNodes, _nodes, _nodeCount);
 
-                // Build a linked list for the free list. The parent
+                // Build a linked enemyFoeList for the free enemyFoeList. The parent
                 // pointer becomes the "next" pointer.
                 for (int i = _nodeCount; i < _nodeCapacity - 1; ++i)
                 {
@@ -447,7 +447,7 @@ namespace FarseerPhysics.Collision
                 _freeList = _nodeCount;
             }
 
-            // Peel a node off the free list.
+            // Peel a node off the free enemyFoeList.
             int nodeId = _freeList;
             _freeList = _nodes[nodeId].ParentOrNext;
             _nodes[nodeId].ParentOrNext = NullNode;

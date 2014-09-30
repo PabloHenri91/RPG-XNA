@@ -40,7 +40,7 @@ namespace FarseerPhysics.Common.Decomposition
         /// </summary>
         /// <param name="vertices">The polygon to decompose.</param>
         /// <param name="sheer">The sheer to use if you get bad results, try using a higher value.</param>
-        /// <returns>A list of triangles</returns>
+        /// <returns>A enemyFoeList of triangles</returns>
         public static List<Vertices> ConvexPartition(Vertices vertices, float sheer = 0.001f)
         {
             Debug.Assert(vertices.Count > 3);
@@ -76,7 +76,7 @@ namespace FarseerPhysics.Common.Decomposition
         /// </summary>
         /// <param name="vertices">The polygon to decompose.</param>
         /// <param name="sheer">The sheer to use if you get bad results, try using a higher value.</param>
-        /// <returns>A list of trapezoids</returns>
+        /// <returns>A enemyFoeList of trapezoids</returns>
         public static List<Vertices> ConvexPartitionTrapezoid(Vertices vertices, float sheer = 0.001f)
         {
             List<Point> compatList = new List<Point>(vertices.Count);

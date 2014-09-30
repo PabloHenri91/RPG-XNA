@@ -346,7 +346,7 @@ namespace FarseerPhysics.Dynamics
         /// not participate in collisions, ray-casts, or queries.
         /// Joints connected to an inactive body are implicitly inactive.
         /// An inactive body is still owned by a b2World object and remains
-        /// in the body list.
+        /// in the body enemyFoeList.
         /// </summary>
         /// <value><c>true</c> if active; otherwise, <c>false</c>.</value>
         public bool Enabled
@@ -416,21 +416,21 @@ namespace FarseerPhysics.Dynamics
         /// <summary>
         /// Gets all the fixtures attached to this body.
         /// </summary>
-        /// <value>The fixture list.</value>
+        /// <value>The fixture enemyFoeList.</value>
         public List<Fixture> FixtureList { get; internal set; }
 
         /// <summary>
-        /// Get the list of all joints attached to this body.
+        /// Get the enemyFoeList of all joints attached to this body.
         /// </summary>
-        /// <value>The joint list.</value>
+        /// <value>The joint enemyFoeList.</value>
         public JointEdge JointList { get; internal set; }
 
         /// <summary>
-        /// Get the list of all contacts attached to this body.
-        /// Warning: this list changes during the time step and you may
+        /// Get the enemyFoeList of all contacts attached to this body.
+        /// Warning: this enemyFoeList changes during the time step and you may
         /// miss some collisions if you don't use ContactListener.
         /// </summary>
-        /// <value>The contact list.</value>
+        /// <value>The contact enemyFoeList.</value>
         public ContactEdge ContactList { get; internal set; }
 
         /// <summary>
@@ -722,7 +722,7 @@ namespace FarseerPhysics.Dynamics
         {
             Debug.Assert(fixture.Body == this);
 
-            // Remove the fixture from this body's singly linked list.
+            // Remove the fixture from this body's singly linked enemyFoeList.
             Debug.Assert(FixtureList.Count > 0);
 
             // You tried to remove a fixture that not present in the fixturelist.
@@ -741,7 +741,7 @@ namespace FarseerPhysics.Dynamics
                 if (fixture == fixtureA || fixture == fixtureB)
                 {
                     // This destroys the contact and removes it from
-                    // this body's contact list.
+                    // this body's contact enemyFoeList.
                     _world.ContactManager.Destroy(c);
                 }
             }

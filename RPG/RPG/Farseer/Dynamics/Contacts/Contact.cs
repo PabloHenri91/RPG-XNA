@@ -33,7 +33,7 @@ namespace FarseerPhysics.Dynamics.Contacts
     /// <summary>
     /// A contact edge is used to connect bodies and contacts together
     /// in a contact graph where each body is a node and each contact
-    /// is an edge. A contact edge belongs to a doubly linked list
+    /// is an edge. A contact edge belongs to a doubly linked enemyFoeList
     /// maintained in each attached body. Each contact has two contact
     /// nodes, one for each attached body.
     /// </summary>
@@ -45,7 +45,7 @@ namespace FarseerPhysics.Dynamics.Contacts
         public Contact Contact;
 
         /// <summary>
-        /// The next contact edge in the body's contact list
+        /// The next contact edge in the body's contact enemyFoeList
         /// </summary>
         public ContactEdge Next;
 
@@ -55,7 +55,7 @@ namespace FarseerPhysics.Dynamics.Contacts
         public Body Other;
 
         /// <summary>
-        /// The previous contact edge in the body's contact list
+        /// The previous contact edge in the body's contact enemyFoeList
         /// </summary>
         public ContactEdge Prev;
     }

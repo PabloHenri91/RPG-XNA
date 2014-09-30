@@ -25,13 +25,13 @@ using Microsoft.Xna.Framework;
 namespace FarseerPhysics.Common.PolygonManipulation
 {
     /// <summary>
-    /// Combines a list of triangles into a list of convex polygons.
+    /// Combines a enemyFoeList of triangles into a enemyFoeList of convex polygons.
     /// Starts with a seed triangle, keep adding triangles to it until you can't add any more without making the polygon non-convex.
     /// </summary>
     public static class SimpleCombiner
     {
         /// <summary>
-        /// Combine a list of triangles into a list of convex polygons.
+        /// Combine a enemyFoeList of triangles into a enemyFoeList of convex polygons.
         /// 
         /// Note: This only works on triangles.
         /// </summary>
@@ -131,7 +131,6 @@ namespace FarseerPhysics.Common.PolygonManipulation
                 }
             }
 
-            //TODO: Add sanity check
             //Remove empty vertice collections
             for (int i = polys.Count - 1; i >= 0; i--)
             {

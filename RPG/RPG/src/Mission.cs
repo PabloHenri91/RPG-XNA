@@ -14,7 +14,7 @@ namespace RPG.src
         internal enum states { mission, loading, pause };
         states state;
         states nextState;
-
+        
         private Story story;
 
         internal Player player;
@@ -25,6 +25,11 @@ namespace RPG.src
         //Phisics
         public World world;
 
+        //
+        List<EnemyFoe> enemyFoeList;
+        private bool noEnemiesOnScreen;
+        private int spawnedEnemies;
+        private int lastSpawn;
 
         public Mission()
             : base()
@@ -42,6 +47,8 @@ namespace RPG.src
 
             textures2Dlocations.Add("missionHUD");
             textures2Dlocations.Add("dot");
+
+            enemyFoeList = new List<EnemyFoe>();
         }
 
         public void doLogic()
@@ -57,6 +64,8 @@ namespace RPG.src
                             player.update();
                             translateMatrix(player.position.X, player.position.Y);
                             mapManager.update();
+
+                            updateEnemies();
                         }
                         break;
                     case states.pause:
@@ -109,6 +118,12 @@ namespace RPG.src
                 case states.mission:
                     {
                         mapManager.drawMapFloor();
+
+                        foreach (EnemyFoe enemyFoe in enemyFoeList)
+                        {
+                            tilesets[enemyFoe.type + enemyFoe.state].drawTile(enemyFoe.position, enemyFoe.texCoord.X, enemyFoe.texCoord.Y);
+                        }
+
                         tilesets[Game1.memoryCard.playerClass + "Player"].drawTile((int)player.position.X, (int)player.position.Y, 1, player.texCoord.Y);
                         mapManager.drawMapRoof();
                         textures2D["missionHUD"].drawOnScreen();
@@ -123,5 +138,49 @@ namespace RPG.src
                     break;
             }
         }
+
+        //case states.mission:
+        #region
+        private void updateEnemies()
+        {
+            noEnemiesOnScreen = true;
+            tryToSpawEnemyFoe();
+
+            foreach (EnemyFoe enemyFoe in enemyFoeList)
+            {
+                enemyFoe.update();
+            }
+
+            for (int i = enemyFoeList.Count - 1; i >= 0; i--)
+            {
+                if (enemyFoeList[i].body.IsDisposed)
+                {
+                    enemyFoeList.RemoveAt(i);
+                    spawnedEnemies--;
+                }
+            }
+        }
+
+        private void tryToSpawEnemyFoe()
+        {
+            if (player.body.health > 0)
+            {
+                if (Game1.frameCount - lastSpawn > Game1.config.spawningInterval)
+                {
+                    spawnEnemyFoe();
+                    spawnedEnemies++;
+                    lastSpawn = Game1.frameCount;
+                }
+            }
+        }
+
+        private void spawnEnemyFoe()
+        {
+
+            int type = Game1.random.Next(1, 111 + 1);
+            //TODO: kkk
+            enemyFoeList.Add(new EnemyFoe(textures2D["" + type].width, textures2D["" + type].height, type));
+        }
+        #endregion
     }
 }

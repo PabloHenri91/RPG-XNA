@@ -8,9 +8,9 @@
  * are permitted provided that the following conditions are met:
  *
  * * Redistributions of source code must retain the above copyright notice,
- *   this list of conditions and the following disclaimer.
+ *   this enemyFoeList of conditions and the following disclaimer.
  * * Redistributions in binary form must reproduce the above copyright notice,
- *   this list of conditions and the following disclaimer in the documentation
+ *   this enemyFoeList of conditions and the following disclaimer in the documentation
  *   and/or other materials provided with the distribution.
  * * Neither the name of Poly2Tri nor the names of its contributors may be
  *   used to endorse or promote products derived from this software without specific
@@ -60,7 +60,6 @@ namespace FarseerPhysics.Common.Decomposition.CDT.Delaunay.Sweep
         public void RemoveFromList(DelaunayTriangle triangle)
         {
             Triangles.Remove(triangle);
-            // TODO: remove all neighbor pointers to this triangle
             //        for( int i=0; i<3; i++ )
             //        {
             //            if( triangle.neighbors[i] != null )
@@ -133,8 +132,6 @@ namespace FarseerPhysics.Common.Decomposition.CDT.Delaunay.Sweep
             aFront = new AdvancingFront(head, tail);
             aFront.AddNode(middle);
 
-            // TODO: I think it would be more intuitive if head is middles next and not previous
-            //       so swap head and tail
             aFront.Head.Next = middle;
             middle.Next = aFront.Tail;
             middle.Prev = aFront.Head;

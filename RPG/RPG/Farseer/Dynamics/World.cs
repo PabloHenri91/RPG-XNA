@@ -142,7 +142,7 @@ namespace FarseerPhysics.Dynamics
                 {
                     bool collideConnected = joint.CollideConnected;
 
-                    // Remove from the world list.
+                    // Remove from the world enemyFoeList.
                     JointList.Remove(joint);
 
                     // Disconnect from island graph.
@@ -237,7 +237,7 @@ namespace FarseerPhysics.Dynamics
             {
                 foreach (Joint joint in _jointAddList)
                 {
-                    // Connect to the world list.
+                    // Connect to the world enemyFoeList.
                     JointList.Add(joint);
 
                     // Connect to the bodies' doubly linked lists.
@@ -318,7 +318,7 @@ namespace FarseerPhysics.Dynamics
                         }
                     }
 #endif
-                    // Add to world list.
+                    // Add to world enemyFoeList.
                     BodyList.Add(body);
 
                     if (BodyAdded != null)
@@ -374,7 +374,7 @@ namespace FarseerPhysics.Dynamics
 
                     body.FixtureList = null;
 
-                    // Remove world body list.
+                    // Remove world body enemyFoeList.
                     BodyList.Remove(body);
 
                     if (BodyRemoved != null)
@@ -1070,9 +1070,9 @@ namespace FarseerPhysics.Dynamics
         public ContactManager ContactManager { get; private set; }
 
         /// <summary>
-        /// Get the world body list.
+        /// Get the world body enemyFoeList.
         /// </summary>
-        /// <value>Thehead of the world body list.</value>
+        /// <value>Thehead of the world body enemyFoeList.</value>
         public List<Body> BodyList { get; private set; }
 
 #if USE_AWAKE_BODY_SET
@@ -1087,16 +1087,16 @@ namespace FarseerPhysics.Dynamics
 #endif
 
         /// <summary>
-        /// Get the world joint list. 
+        /// Get the world joint enemyFoeList. 
         /// </summary>
-        /// <value>The joint list.</value>
+        /// <value>The joint enemyFoeList.</value>
         public List<Joint> JointList { get; private set; }
 
         /// <summary>
-        /// Get the world contact list. With the returned contact, use Contact.GetNext to get
-        /// the next contact in the world list. A null contact indicates the end of the list.
+        /// Get the world contact enemyFoeList. With the returned contact, use Contact.GetNext to get
+        /// the next contact in the world enemyFoeList. A null contact indicates the end of the enemyFoeList.
         /// </summary>
-        /// <value>The head of the world contact list.</value>
+        /// <value>The head of the world contact enemyFoeList.</value>
         public List<Contact> ContactList
         {
             get { return ContactManager.ContactList; }
@@ -1312,7 +1312,7 @@ namespace FarseerPhysics.Dynamics
         /// Use the overload with a callback for filtering and better performance.
         /// </summary>
         /// <param name="aabb">The aabb query box.</param>
-        /// <returns>A list of fixtures that were in the affected area.</returns>
+        /// <returns>A enemyFoeList of fixtures that were in the affected area.</returns>
         public List<Fixture> QueryAABB(ref AABB aabb)
         {
             List<Fixture> affected = new List<Fixture>();
@@ -1397,7 +1397,7 @@ namespace FarseerPhysics.Dynamics
 
         public void RemoveBreakableBody(BreakableBody breakableBody)
         {
-            //The breakable body list does not contain the body you tried to remove.
+            //The breakable body enemyFoeList does not contain the body you tried to remove.
             Debug.Assert(BreakableBodyList.Contains(breakableBody));
 
             BreakableBodyList.Remove(breakableBody);
@@ -1433,7 +1433,7 @@ namespace FarseerPhysics.Dynamics
         }
 
         /// <summary>
-        /// Returns a list of fixtures that are at the specified point.
+        /// Returns a enemyFoeList of fixtures that are at the specified point.
         /// </summary>
         /// <param name="point">The point.</param>
         /// <returns></returns>

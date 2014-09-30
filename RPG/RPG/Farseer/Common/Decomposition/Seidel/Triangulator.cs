@@ -5,7 +5,7 @@ namespace FarseerPhysics.Common.Decomposition.Seidel
 {
     internal class Triangulator
     {
-        // Trapezoid decomposition list
+        // Trapezoid decomposition enemyFoeList
         public List<Trapezoid> Trapezoids;
         public List<List<Point>> Triangles;
 
@@ -96,7 +96,7 @@ namespace FarseerPhysics.Common.Decomposition.Seidel
             CreateMountains();
         }
 
-        // Build a list of x-monotone mountains
+        // Build a enemyFoeList of x-monotone mountains
         private void CreateMountains()
         {
             foreach (Edge edge in _edgeList)
@@ -121,7 +121,7 @@ namespace FarseerPhysics.Common.Decomposition.Seidel
                     // Triangulate monotone mountain
                     mountain.Process();
 
-                    // Extract the triangles into a single list
+                    // Extract the triangles into a single enemyFoeList
                     foreach (List<Point> t in mountain.Triangles)
                     {
                         Triangles.Add(t);

@@ -30,7 +30,7 @@ namespace FarseerPhysics.Common.PhysicsLogic
         /// <param name="radius">The radius of the explosion.</param>
         /// <param name="force">The force applied</param>
         /// <param name="maxForce">A maximum amount of force. When force gets over this value, it will be equal to maxForce</param>
-        /// <returns>A list of bodies and the amount of force that was applied to them.</returns>
+        /// <returns>A enemyFoeList of bodies and the amount of force that was applied to them.</returns>
         public Dictionary<Body, Vector2> Activate(Vector2 pos, float radius, float force, float maxForce = float.MaxValue)
         {
             HashSet<Body> affectedBodies = new HashSet<Body>();

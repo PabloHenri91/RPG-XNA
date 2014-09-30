@@ -38,25 +38,25 @@ namespace RPG.src
 
         void move()
         {
-            int maxSpeed = 10;
+            int maxSpeed = 100;
             if (Game1.input.key_left && body.LinearVelocity.X > -maxSpeed)
             {
-                body.ApplyForce(new Vector2(-10f, 0), body.Position);
+                body.ApplyForce(new Vector2(-100f, 0), body.Position);
                 texCoord.Y = 1;
             }
             if (Game1.input.key_down && body.LinearVelocity.Y > -maxSpeed)
             {
-                body.ApplyForce(new Vector2(0, -10f), body.Position);
+                body.ApplyForce(new Vector2(0, -100f), body.Position);
                 texCoord.Y = 0;
             }
             if (Game1.input.key_right && body.LinearVelocity.X < maxSpeed)
             {
-                body.ApplyForce(new Vector2(10f, 0), body.Position);
+                body.ApplyForce(new Vector2(100f, 0), body.Position);
                 texCoord.Y = 2;
             }
             if (Game1.input.key_up && body.LinearVelocity.Y < maxSpeed)
             {
-                body.ApplyForce(new Vector2(0, 10f), body.Position);
+                body.ApplyForce(new Vector2(0, 100f), body.Position);
                 texCoord.Y = 3;
             }
         }

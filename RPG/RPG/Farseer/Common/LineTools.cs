@@ -248,7 +248,7 @@ namespace FarseerPhysics.Common
         }
 
         /// <summary>
-        /// Get all intersections between a line segment and a list of vertices
+        /// Get all intersections between a line segment and a enemyFoeList of vertices
         /// representing a polygon. The vertices reuse adjacent points, so for example
         /// edges one and two are between the first and second vertices and between the
         /// second and third vertices. The last edge is between vertex vertices.Count - 1

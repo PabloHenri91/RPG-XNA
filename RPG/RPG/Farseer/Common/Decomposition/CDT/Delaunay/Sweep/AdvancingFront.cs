@@ -8,9 +8,9 @@
  * are permitted provided that the following conditions are met:
  *
  * * Redistributions of source code must retain the above copyright notice,
- *   this list of conditions and the following disclaimer.
+ *   this enemyFoeList of conditions and the following disclaimer.
  * * Redistributions in binary form must reproduce the above copyright notice,
- *   this list of conditions and the following disclaimer in the documentation
+ *   this enemyFoeList of conditions and the following disclaimer in the documentation
  *   and/or other materials provided with the distribution.
  * * Neither the name of Poly2Tri nor the names of its contributors may be
  *   used to endorse or promote products derived from this software without specific
@@ -83,12 +83,11 @@ namespace FarseerPhysics.Common.Decomposition.CDT.Delaunay.Sweep
         }
 
         /// <summary>
-        /// MM:  This seems to be used by LocateNode to guess a position in the implicit linked list of AdvancingFrontNodes near x
+        /// MM:  This seems to be used by LocateNode to guess a position in the implicit linked enemyFoeList of AdvancingFrontNodes near x
         ///      Removed an overload that depended on this being exact
         /// </summary>
         private AdvancingFrontNode FindSearchNode(double x)
         {
-            // TODO: implement BST index 
             return Search;
         }
 

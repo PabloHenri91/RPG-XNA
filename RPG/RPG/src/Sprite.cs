@@ -50,6 +50,20 @@ namespace RPG.src
             Game1.spriteBatch.Draw(texture, destinationRectangle, null, Color.White, rotation, origin, SpriteEffects.None, 0f);
         }
 
+        internal void draw(Vector2 position)
+        {
+            destinationRectangle.X = (int)(position.X + Game1.matrix.X);
+            destinationRectangle.Y = -(int)(position.Y + Game1.matrix.Y);
+            Game1.spriteBatch.Draw(texture, destinationRectangle, null, Color.White, rotation, origin, SpriteEffects.None, 0f);
+        }
+
+        internal void draw(Vector2 position, float rotation)
+        {
+            destinationRectangle.X = (int)(position.X + Game1.matrix.X);
+            destinationRectangle.Y = -(int)(position.Y + Game1.matrix.Y);
+            Game1.spriteBatch.Draw(texture, destinationRectangle, null, Color.White, rotation, origin, SpriteEffects.None, 0f);
+        }
+
         public void drawOnScreen()
         {
             destinationRectangle.X = (int)position.X;

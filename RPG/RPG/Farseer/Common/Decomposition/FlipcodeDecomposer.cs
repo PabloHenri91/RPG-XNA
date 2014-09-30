@@ -28,7 +28,7 @@ namespace FarseerPhysics.Common.Decomposition
         /// - Only works on counter clockwise polygons
         /// 
         /// </summary>
-        /// <param name="vertices">The list of points describing the polygon</param>
+        /// <param name="vertices">The enemyFoeList of points describing the polygon</param>
         public static List<Vertices> ConvexPartition(Vertices vertices)
         {
             Debug.Assert(vertices.Count > 3);
@@ -123,7 +123,7 @@ namespace FarseerPhysics.Common.Decomposition
         /// Cut a the contour and add a triangle into V to describe the 
         /// location of the cut
         /// </summary>
-        /// <param name="contour">The list of points defining the polygon</param>
+        /// <param name="contour">The enemyFoeList of points defining the polygon</param>
         /// <param name="u">The index of the first point</param>
         /// <param name="v">The index of the second point</param>
         /// <param name="w">The index of the third point</param>

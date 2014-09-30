@@ -63,7 +63,7 @@ namespace FarseerPhysics.Dynamics.Joints
     /// <summary>
     /// A joint edge is used to connect bodies and joints together
     /// in a joint graph where each body is a node and each joint
-    /// is an edge. A joint edge belongs to a doubly linked list
+    /// is an edge. A joint edge belongs to a doubly linked enemyFoeList
     /// maintained in each attached body. Each joint has two joint
     /// nodes, one for each attached body.
     /// </summary>
@@ -75,7 +75,7 @@ namespace FarseerPhysics.Dynamics.Joints
         public Joint Joint;
 
         /// <summary>
-        /// The next joint edge in the body's joint list.
+        /// The next joint edge in the body's joint enemyFoeList.
         /// </summary>
         public JointEdge Next;
 
@@ -85,7 +85,7 @@ namespace FarseerPhysics.Dynamics.Joints
         public Body Other;
 
         /// <summary>
-        /// The previous joint edge in the body's joint list.
+        /// The previous joint edge in the body's joint enemyFoeList.
         /// </summary>
         public JointEdge Prev;
     }
