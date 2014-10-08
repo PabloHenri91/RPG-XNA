@@ -16,13 +16,12 @@ namespace RPG.src
 
         public static float tileSize = 16;
         public static float tilesPerChunk = 64;
-        public static float chunksPerMap = 4096;
+        public static float chunksPerMap = 64;
 
         public static float chunkSize = tilesPerChunk * tileSize;
         public static float mapSize = chunksPerMap * chunkSize;
 
-
         //Foes
-        public int spawningInterval = 10;
+        public int spawningInterval = 60 * 5;
     }
 }

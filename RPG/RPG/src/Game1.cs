@@ -77,6 +77,7 @@ namespace RPG.src
 
         public Game1()
         {
+            this.Window.Title = "";
             graphicsDeviceManager = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
 

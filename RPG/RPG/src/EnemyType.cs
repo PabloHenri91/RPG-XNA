@@ -8,7 +8,7 @@ namespace RPG.src
 {
     class EnemyType
     {
-        public Enemies.types type;
+        public int type;
         public int strenghtBonus;
         public int enduranceBonus;
         public int intelligenceBonus;
@@ -16,7 +16,7 @@ namespace RPG.src
         public int speedBonus;
         public int agilityBonus;
 
-        public EnemyType(Enemies.types type, int strenght, int endurance, int intelligence, int willpower, int speed, int agility)
+        public EnemyType(int type, int strenght, int endurance, int intelligence, int willpower, int speed, int agility)
         {
             this.type = type;
             this.strenghtBonus = strenght;

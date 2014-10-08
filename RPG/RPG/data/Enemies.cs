@@ -12,7 +12,7 @@ namespace RPG.data
 
         EnemyType enemyType;
 
-        internal static enum types { goblim, golem };
+        internal enum types { goblim, golem };
 
         internal Enemies()
         {
@@ -28,12 +28,12 @@ namespace RPG.data
                 {
                     case types.goblim:
                         {
-                            enemyTypes.Add(i, enemyType = new EnemyType((types)i, 10, 10, 10, 10, 10, 10));
+                            enemyTypes.Add(i, enemyType = new EnemyType(i, 10, 10, 10, 10, 10, 10));
                         }
                         break;
                     case types.golem:
                         {
-                            enemyTypes.Add(i, enemyType = new EnemyType((types)i, 10, 10, 10, 10, 10, 10));
+                            enemyTypes.Add(i, enemyType = new EnemyType(i, 10, 10, 10, 10, 10, 10));
                         }
                         break;
                     //default:

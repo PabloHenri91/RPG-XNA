@@ -12,8 +12,8 @@ namespace RPG.src
         private MouseState mouseState, lastMouseState;
         private bool backButtonPressed, lastBackButtonPressed, mouseStartMooving;
         public bool mouse0, click0, backButtonClick;
-        private int clickInterval, last0Touch, mouseX, mouseY, lastMouseX, lastMouseY, dx, dy, totalDx, totalDy;
-        public int onScreenMouseX, onScreenMouseY;
+        private int clickInterval, last0Touch, lastMouseX, lastMouseY, dx, dy, totalDx, totalDy;
+        public int onScreenMouseX, onScreenMouseY, mouseX, mouseY;
         public Rectangle mouseRectangle;
         public bool key_left, key_down, key_right, key_up;
 

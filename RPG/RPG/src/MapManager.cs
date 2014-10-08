@@ -72,7 +72,6 @@ namespace RPG.src
             {
                 loadMap();
                 updateMiniMapTexture2d();
-                loadedRegion = playerRegion;
             }
         }
 
@@ -80,18 +79,22 @@ namespace RPG.src
         {
             if (playerRegion.X < loadedRegion.X)
             {
+                loadedRegion.X--;
                 loadA();
             }
             if (playerRegion.Y < loadedRegion.Y)
             {
+                loadedRegion.Y--;
                 loadS();
             }
             if (playerRegion.X > loadedRegion.X)
             {
+                loadedRegion.X++;
                 loadD();
             }
             if (playerRegion.Y > loadedRegion.Y)
             {
+                loadedRegion.Y++;
                 loadW();
             }
         }
@@ -107,11 +110,11 @@ namespace RPG.src
                 miniMapChunkList[24 - (i * 5)] = miniMapChunkList[19 - (i * 5)];
             }
 
-            miniMapChunkList[0] = new Chunk(playerRegion.X - 2, playerRegion.Y + 2);
-            miniMapChunkList[1] = new Chunk(playerRegion.X - 1, playerRegion.Y + 2);
-            miniMapChunkList[2] = new Chunk(playerRegion.X + 0, playerRegion.Y + 2);
-            miniMapChunkList[3] = new Chunk(playerRegion.X + 1, playerRegion.Y + 2);
-            miniMapChunkList[4] = new Chunk(playerRegion.X + 2, playerRegion.Y + 2);
+            miniMapChunkList[0] = new Chunk(loadedRegion.X - 2, loadedRegion.Y + 2);
+            miniMapChunkList[1] = new Chunk(loadedRegion.X - 1, loadedRegion.Y + 2);
+            miniMapChunkList[2] = new Chunk(loadedRegion.X + 0, loadedRegion.Y + 2);
+            miniMapChunkList[3] = new Chunk(loadedRegion.X + 1, loadedRegion.Y + 2);
+            miniMapChunkList[4] = new Chunk(loadedRegion.X + 2, loadedRegion.Y + 2);
 
             for (i = 0; i < 2; i++)
             {
@@ -136,11 +139,11 @@ namespace RPG.src
                 miniMapChunkList[20 + i] = miniMapChunkList[21 + i];
             }
 
-            miniMapChunkList[4] = new Chunk(playerRegion.X + 2, playerRegion.Y + 2);
-            miniMapChunkList[9] = new Chunk(playerRegion.X + 2, playerRegion.Y + 1);
-            miniMapChunkList[14] = new Chunk(playerRegion.X + 2, playerRegion.Y + 0);
-            miniMapChunkList[19] = new Chunk(playerRegion.X + 2, playerRegion.Y - 1);
-            miniMapChunkList[24] = new Chunk(playerRegion.X + 2, playerRegion.Y - 2);
+            miniMapChunkList[4] = new Chunk(loadedRegion.X + 2, loadedRegion.Y + 2);
+            miniMapChunkList[9] = new Chunk(loadedRegion.X + 2, loadedRegion.Y + 1);
+            miniMapChunkList[14] = new Chunk(loadedRegion.X + 2, loadedRegion.Y + 0);
+            miniMapChunkList[19] = new Chunk(loadedRegion.X + 2, loadedRegion.Y - 1);
+            miniMapChunkList[24] = new Chunk(loadedRegion.X + 2, loadedRegion.Y - 2);
 
             for (i = 0; i < 2; i++)
             {
@@ -165,11 +168,11 @@ namespace RPG.src
                 miniMapChunkList[4 + (i * 5)] = miniMapChunkList[9 + (i * 5)];
             }
 
-            miniMapChunkList[20] = new Chunk(playerRegion.X - 2, playerRegion.Y - 2);
-            miniMapChunkList[21] = new Chunk(playerRegion.X - 1, playerRegion.Y - 2);
-            miniMapChunkList[22] = new Chunk(playerRegion.X + 0, playerRegion.Y - 2);
-            miniMapChunkList[23] = new Chunk(playerRegion.X + 1, playerRegion.Y - 2);
-            miniMapChunkList[24] = new Chunk(playerRegion.X + 2, playerRegion.Y - 2);
+            miniMapChunkList[20] = new Chunk(loadedRegion.X - 2, loadedRegion.Y - 2);
+            miniMapChunkList[21] = new Chunk(loadedRegion.X - 1, loadedRegion.Y - 2);
+            miniMapChunkList[22] = new Chunk(loadedRegion.X + 0, loadedRegion.Y - 2);
+            miniMapChunkList[23] = new Chunk(loadedRegion.X + 1, loadedRegion.Y - 2);
+            miniMapChunkList[24] = new Chunk(loadedRegion.X + 2, loadedRegion.Y - 2);
 
             for (i = 0; i < 2; i++)
             {
@@ -194,11 +197,11 @@ namespace RPG.src
                 miniMapChunkList[24 - i] = miniMapChunkList[23 - i];
             }
 
-            miniMapChunkList[0] = new Chunk(playerRegion.X - 2, playerRegion.Y + 2);
-            miniMapChunkList[5] = new Chunk(playerRegion.X - 2, playerRegion.Y + 1);
-            miniMapChunkList[10] = new Chunk(playerRegion.X - 2, playerRegion.Y + 0);
-            miniMapChunkList[15] = new Chunk(playerRegion.X - 2, playerRegion.Y - 1);
-            miniMapChunkList[20] = new Chunk(playerRegion.X - 2, playerRegion.Y - 2);
+            miniMapChunkList[0] = new Chunk(loadedRegion.X - 2, loadedRegion.Y + 2);
+            miniMapChunkList[5] = new Chunk(loadedRegion.X - 2, loadedRegion.Y + 1);
+            miniMapChunkList[10] = new Chunk(loadedRegion.X - 2, loadedRegion.Y + 0);
+            miniMapChunkList[15] = new Chunk(loadedRegion.X - 2, loadedRegion.Y - 1);
+            miniMapChunkList[20] = new Chunk(loadedRegion.X - 2, loadedRegion.Y - 2);
 
             for (i = 0; i < 2; i++)
             {
@@ -301,7 +304,9 @@ namespace RPG.src
             //sourceRectangle.Y = (int)(Game1.mission.textures2D["miniMapPablo.fw"].texture.Height - ((Game1.mission.player.position.Y - Config.chunkSize) / Config.tileSize));
             //Game1.spriteBatch.Draw( Game1.mission.textures2D["miniMapPablo.fw"].texture, miniMapDestinationRectangle, sourceRectangle, Color.White);
 
+#if DEBUG
             Game1.spriteBatch.DrawString(Game1.verdana12, "" + playerRegion, new Vector2(miniMapDestinationRectangle.X + 10, miniMapDestinationRectangle.Y + 10), Color.White);
+#endif
             
         }
     }
