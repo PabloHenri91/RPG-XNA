@@ -45,7 +45,8 @@ namespace RPG.src
 
             mapManager = new MapManager();
 
-            tilesetslocations.Add(Game1.memoryCard.playerClass + "Player", new Vector2(32));
+            tilesetslocations.Add(Game1.memoryCard.playerClass + "Player", new Vector2(64));
+            tilesetslocations.Add(Game1.memoryCard.playerClass + "PlayerIdle", new Vector2(64));
 
             tilesetslocations.Add("golem", new Vector2(64));
 
@@ -53,6 +54,8 @@ namespace RPG.src
             textures2Dlocations.Add("missionHUD");
             textures2Dlocations.Add("dot");
             textures2Dlocations.Add("water");
+
+            textures2Dlocations.Add("miniMapMask");
 
             enemyFoeList = new List<EnemyFoe>();
         }
@@ -110,6 +113,7 @@ namespace RPG.src
                                 player.getPosition();
                                 translateMatrix(player.position.X, player.position.Y);
                                 mapManager.reLoadMap();
+
                                 textures2D["dot"].setPosition(900 - 4, 100 - 4);
                             }
                         }
@@ -138,26 +142,27 @@ namespace RPG.src
                 case states.mission:
                     {
                         Game1.spriteBatch.End();
-
                         Game1.spriteBatch.Begin(SpriteSortMode.Deferred, null, SamplerState.LinearWrap, null, Game1.display.scissorTestRasterizerState, null, Game1.display.camera);
-                        Game1.spriteBatch.Draw(textures2D["water"].texture, new Rectangle(Game1.display.displayWidthOver2, Game1.display.displayHeightOver2, Game1.display.displayWidth, Game1.display.displayHeight), new Rectangle((int)player.position.X + (int)waterPosition.X, (int)-player.position.Y + (int)waterPosition.Y, textures2D["water"].width, textures2D["water"].height), Color.White, 0, new Vector2(textures2D["water"].width / 2f, textures2D["water"].height / 2f), SpriteEffects.None, 0f);
+                        {
+                            Game1.spriteBatch.Draw(textures2D["water"].texture, new Rectangle(Game1.display.displayWidthOver2, Game1.display.displayHeightOver2, Game1.display.displayWidth, Game1.display.displayHeight), new Rectangle((int)player.position.X + (int)waterPosition.X, (int)-player.position.Y + (int)waterPosition.Y, textures2D["water"].width, textures2D["water"].height), Color.White, 0, new Vector2(textures2D["water"].width / 2f, textures2D["water"].height / 2f), SpriteEffects.None, 0f);
+                        }
                         Game1.spriteBatch.End();
 
                         Game1.spriteBatch.Begin(SpriteSortMode.Deferred, null, null, null, Game1.display.scissorTestRasterizerState, null, Game1.display.camera);
-                        mapManager.drawMapFloor();
-
-                        foreach (EnemyFoe enemyFoe in enemyFoeList)
                         {
-                            tilesets[enemyFoe.typeToString + enemyFoe.state].drawTile(enemyFoe.position, enemyFoe.texCoord.X, enemyFoe.texCoord.Y);
+                            mapManager.drawMapFloor();
+
+                            foreach (EnemyFoe enemyFoe in enemyFoeList)
+                            {
+                                tilesets[enemyFoe.typeToString + enemyFoe.state].drawTile(enemyFoe.position, enemyFoe.texCoord.X, enemyFoe.texCoord.Y);
+                            }
+
+                            tilesets[Game1.memoryCard.playerClass + "Player" + player.status].drawTile((int)player.position.X, (int)player.position.Y, player.texCoord.X, player.texCoord.Y);
+                            mapManager.drawMapRoof();
+                            textures2D["missionHUD"].drawOnScreen();
+                            mapManager.drawMiniMap();
+                            textures2D["dot"].drawOnScreen();
                         }
-
-                        tilesets[Game1.memoryCard.playerClass + "Player"].setRotation(player.rotation);
-
-                        tilesets[Game1.memoryCard.playerClass + "Player"].drawTile((int)player.position.X, (int)player.position.Y, player.texCoord.X, player.texCoord.Y);
-                        mapManager.drawMapRoof();
-                        textures2D["missionHUD"].drawOnScreen();
-                        mapManager.drawMiniMap();
-                        textures2D["dot"].drawOnScreen();
                     }
                     break;
                 case states.pause:

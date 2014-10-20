@@ -21,16 +21,19 @@ namespace RPG.src
         private float auxRotation;
         private int directionInputCount;
         private float maxSpeed;
+        public string status;
+        private bool startWalking;
+        private int startWalkingMiliseconds;
 
         internal Player(int x, int y, int width, int height)
             : base(x, y, width, height, BodyType.Dynamic)
         {
             body.FixedRotation = true;
             body.health = 100;
-            body.LinearDamping = 10f;
+            body.LinearDamping = 20f;
             body.OnCollision += playerBody_OnCollision;
 
-            maxSpeed = 5f;
+            maxSpeed = 3f;
         }
 
         private bool playerBody_OnCollision(Fixture fixtureA, Fixture fixtureB, Contact contact)
@@ -41,6 +44,7 @@ namespace RPG.src
 
         internal void update()
         {
+            status = "";
             //if (Game1.input.mouse0)
             //{
             //    auxRotation = (float)-Math.Atan2(position.X - Game1.input.mouseX, -(position.Y - Game1.input.mouseY));
@@ -118,6 +122,12 @@ namespace RPG.src
             //texCoord.Y = 3; w +y
             if (directionInputCount > 0 || needToMove)
             {
+                if (!startWalking)
+                {
+                    startWalking = true;
+                    startWalkingMiliseconds = Game1.frameCount;
+                }
+
                 if (Math.Abs(body.LinearVelocity.X) > Math.Abs(body.LinearVelocity.Y))
                 {
                     texCoord.Y = (body.LinearVelocity.X < 0) ? 1 : 2;
@@ -127,11 +137,14 @@ namespace RPG.src
                     texCoord.Y = (body.LinearVelocity.Y < 0) ? 0 : 3;
                 }
 
-                texCoord.X = (Game1.frameCount / 10) % 3;
+                texCoord.X = ((Game1.frameCount - startWalkingMiliseconds) / 5) % 8;
             }
             else
             {
                 texCoord.X = 1;
+                status = "Idle";
+                startWalking = false;
+                texCoord.X = (Game1.frameCount / 6) % 7;
             }
         }
     }

@@ -27,6 +27,7 @@ namespace RPG.src
         private Rectangle miniMapDestinationRectangle;
         private Rectangle sourceRectangle;
         private Vector2 miniMapAuxPosition;
+        private RenderTarget2D miniMapDrawRenderTarget2D;
 
         public MapManager()
         {
@@ -41,10 +42,11 @@ namespace RPG.src
              * 3    4   5
              * 6    7   8
              */
-            miniMapRenderTarget2D = new RenderTarget2D(Game1.graphicsDeviceManager.GraphicsDevice, 320, 320);
             miniMapAuxRetangle = new Rectangle(0, 0, 1, 1);
-            miniMapDestinationRectangle = new Rectangle(804, 4, 192, 192);
+            miniMapDestinationRectangle = new Rectangle(800, 0, 192, 192);
             sourceRectangle = new Rectangle(0, 0, 192, 192);
+
+            miniMapDrawRenderTarget2D = new RenderTarget2D(Game1.graphicsDeviceManager.GraphicsDevice, 200, 200);
         }
 
         internal void update()
@@ -73,6 +75,37 @@ namespace RPG.src
                 loadMap();
                 updateMiniMapTexture2d();
             }
+
+
+            Game1.graphicsDeviceManager.GraphicsDevice.SetRenderTarget(miniMapDrawRenderTarget2D);
+            Game1.graphicsDeviceManager.GraphicsDevice.Clear(Color.Transparent);
+
+            Game1.spriteBatch.Begin(SpriteSortMode.Deferred, new BlendState
+            {
+
+                ColorSourceBlend = Blend.One,
+                ColorDestinationBlend = Blend.SourceAlpha,
+
+                AlphaSourceBlend = Blend.One,
+                AlphaDestinationBlend = Blend.SourceAlpha
+
+            });
+
+            if (miniMapTexture2d != null)
+            {
+                sourceRectangle.X = (int)(((Game1.mission.player.position.X - Config.chunkSize * playerRegion.X) / Config.tileSize) + (Config.tilesPerChunk * 0.5f));
+                sourceRectangle.Y = (int)((-(Game1.mission.player.position.Y - Config.chunkSize * playerRegion.Y) / Config.tileSize) + (Config.tilesPerChunk * 1.5f));
+                Game1.spriteBatch.Draw(miniMapTexture2d, new Rectangle(4, 4, 192, 192), sourceRectangle, Color.White);
+            }
+
+            //Game1.mission.textures2D["miniMapMask"].drawOnScreen();
+
+
+            Game1.spriteBatch.End();
+
+            Game1.graphicsDeviceManager.GraphicsDevice.SetRenderTarget(null);
+            Game1.graphicsDeviceManager.GraphicsDevice.ScissorRectangle = Game1.display.centerViewport.Bounds;
+            Game1.graphicsDeviceManager.GraphicsDevice.Viewport = Game1.display.centerViewport;
         }
 
         private void loadMap()
@@ -269,6 +302,7 @@ namespace RPG.src
             Game1.graphicsDeviceManager.GraphicsDevice.SetRenderTarget(miniMapRenderTarget2D);
             Game1.spriteBatch.Begin();
 
+            //Deslocando imagem
             if (miniMapTexture2d != null)
             {
                 miniMapAuxPosition.X = (loadedRegion.X - playerRegion.X) * Config.tilesPerChunk;
@@ -294,20 +328,26 @@ namespace RPG.src
             miniMapTexture2d = (Texture2D)miniMapRenderTarget2D;
         }
 
-        internal void drawMiniMap()
+        internal void drawMiniMapOld()
         {
-            sourceRectangle.X = (int)(((Game1.mission.player.position.X - Config.chunkSize * playerRegion.X) / Config.tileSize) + (Config.tilesPerChunk * 0.5f));
-            sourceRectangle.Y = (int)((-(Game1.mission.player.position.Y - Config.chunkSize * playerRegion.Y) / Config.tileSize) + (Config.tilesPerChunk * 1.5f));
-            Game1.spriteBatch.Draw(miniMapTexture2d, miniMapDestinationRectangle, sourceRectangle, Color.White);
-
             //sourceRectangle.X = (int)((Game1.mission.player.position.X - Config.chunkSize) / Config.tileSize);
             //sourceRectangle.Y = (int)(Game1.mission.textures2D["miniMapPablo.fw"].texture.Height - ((Game1.mission.player.position.Y - Config.chunkSize) / Config.tileSize));
             //Game1.spriteBatch.Draw( Game1.mission.textures2D["miniMapPablo.fw"].texture, miniMapDestinationRectangle, sourceRectangle, Color.White);
 
+            sourceRectangle.X = (int)(((Game1.mission.player.position.X - Config.chunkSize * playerRegion.X) / Config.tileSize) + (Config.tilesPerChunk * 0.5f));
+            sourceRectangle.Y = (int)((-(Game1.mission.player.position.Y - Config.chunkSize * playerRegion.Y) / Config.tileSize) + (Config.tilesPerChunk * 1.5f));
+
+            Game1.spriteBatch.Draw(miniMapTexture2d, miniMapDestinationRectangle, sourceRectangle, Color.White);
 #if DEBUG
             Game1.spriteBatch.DrawString(Game1.verdana12, "" + playerRegion, new Vector2(miniMapDestinationRectangle.X + 10, miniMapDestinationRectangle.Y + 10), Color.White);
 #endif
-            
+
+        }
+
+        internal void drawMiniMap()
+        {
+            //miniMapDrawRenderTarget2D
+            Game1.spriteBatch.Draw((Texture2D)miniMapDrawRenderTarget2D, new Vector2(800, 0), Color.White);
         }
     }
 }

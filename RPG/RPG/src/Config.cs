@@ -23,5 +23,6 @@ namespace RPG.src
 
         //Foes
         public int spawningInterval = 60 * 5;
+        public static int idleInterval = 6;
     }
 }
